@@ -1,21 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import "./App.css";
-import { Provider } from "react-redux";
-import { store } from "./api/store";
-import { SplashPage } from "./components/SplashPage";
-import { ICurrentLocation } from "./interfaces/interfaces";
+import { SplashPage } from "./pages/SplashPage";
+import { useLocalStorage } from "./hooks/useLocalStorage";
+import { WeatherPage } from "./pages/WeatherPage";
 
 function App() {
-	const [location, setLocation] = useState<ICurrentLocation>({ city: false, geolocation: false });
-	const [isLocation, setIsLocation] = useState(false);
-	useEffect(() => {
-		setIsLocation(true);
-		console.log(location);
-	}, [location]);
-	return (
-		<Provider store={store}>
-			<SplashPage location={location} setLocation={setLocation} />
-		</Provider>
+	const [location, setLocation] = useLocalStorage([]);
+	return location.length > 0 ? (
+		<WeatherPage location={location} />
+	) : (
+		<SplashPage setLocation={setLocation} />
 	);
 }
 
