@@ -2,20 +2,19 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 import { Provider } from "react-redux";
 import { store } from "./api/store";
-import { WeatherPage } from "./WeatherPage";
-import { useLocation } from "./hooks/useLocation";
-import { useLocalStorage } from "./hooks/useLocalStorage";
+import { SplashPage } from "./components/SplashPage";
 import { ICurrentLocation } from "./interfaces/interfaces";
 
 function App() {
-	const currentLocation: ICurrentLocation = {
-		city: useLocalStorage(),
-		geolocation: useLocation(),
-	};
-
+	const [location, setLocation] = useState<ICurrentLocation>({ city: false, geolocation: false });
+	const [isLocation, setIsLocation] = useState(false);
+	useEffect(() => {
+		setIsLocation(true);
+		console.log(location);
+	}, [location]);
 	return (
 		<Provider store={store}>
-			<WeatherPage currentLocation={currentLocation} />
+			<SplashPage location={location} setLocation={setLocation} />
 		</Provider>
 	);
 }
