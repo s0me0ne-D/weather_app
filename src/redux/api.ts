@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { IWeather } from "../interfaces/weather_interface";
 
 const BASE_URL =
 	"https://visual-crossing-weather.p.rapidapi.com/forecast?aggregateHours=24&&contentType=json&unitGroup=metric&shortColumnNames=0&location=";
@@ -14,12 +15,9 @@ export const weatherApi = createApi({
 		},
 	}),
 	endpoints: (builder) => ({
-		getForecastByCity: builder.query<any, string | undefined>({
+		getForecastByCity: builder.query<IWeather, string>({
 			query: (city) => `${city}`,
-		}),
-		getForecastByLocation: builder.query<string, undefined>({
-			query: (location) => `${location}`,
 		}),
 	}),
 });
-export const { useGetForecastByCityQuery, useGetForecastByLocationQuery } = weatherApi;
+export const { useGetForecastByCityQuery } = weatherApi;

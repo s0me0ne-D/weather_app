@@ -3,7 +3,7 @@ export interface IWeather {
 	remainingCost: number;
 	queryCost: number;
 	messages: any;
-	locations: Locations;
+	locations: any;
 }
 
 export interface Columns {
@@ -257,11 +257,7 @@ export interface Cape {
 	unit: any;
 }
 
-export interface Locations {
-	city: GeneratedType;
-}
-
-export interface GeneratedType {
+export interface ILocation {
 	stationContributions: any;
 	values: Value[];
 	id: string;

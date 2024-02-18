@@ -1,15 +1,21 @@
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React from "react";
 import "./App.css";
 import { SplashPage } from "./pages/SplashPage";
 import { useLocalStorage } from "./hooks/useLocalStorage";
 import { WeatherPage } from "./pages/WeatherPage";
+import { createContext } from "react";
+
+export const locationsContext = createContext({
+	locations: [],
+	setLocations: (newValue: any) => {},
+});
 
 function App() {
-	const [location, setLocation] = useLocalStorage([]);
-	return location.length > 0 ? (
-		<WeatherPage location={location} />
-	) : (
-		<SplashPage setLocation={setLocation} />
+	const [locations, setLocations] = useLocalStorage([]);
+	return (
+		<locationsContext.Provider value={{ locations, setLocations }}>
+			{locations.length > 0 ? <WeatherPage /> : <SplashPage />}
+		</locationsContext.Provider>
 	);
 }
 
