@@ -13,9 +13,11 @@ export const locationsContext = createContext({
 function App() {
 	const [locations, setLocations] = useLocalStorage([]);
 	return (
-		<locationsContext.Provider value={{ locations, setLocations }}>
-			{locations.length > 0 ? <WeatherPage /> : <SplashPage />}
-		</locationsContext.Provider>
+		<div className="night">
+			<locationsContext.Provider value={{ locations, setLocations }}>
+				{locations.length > 0 ? <WeatherPage /> : <SplashPage />}
+			</locationsContext.Provider>
+		</div>
 	);
 }
 

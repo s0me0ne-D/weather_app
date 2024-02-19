@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { locationsContext } from "../App";
-
+import "./geolocationSearch.scss";
+import { LocationIcon } from "../assets/icons/LocationIcon";
 export const GeolocationSearch = () => {
 	const { locations, setLocations } = useContext(locationsContext);
 	function handleLocationClick() {
@@ -33,5 +34,16 @@ export const GeolocationSearch = () => {
 		console.log("Unable to retrieve your location");
 	}
 
-	return <button onClick={handleLocationClick}>geolocation</button>;
+	return (
+		<button className="geolocation-search" onClick={handleLocationClick}>
+			geol
+			<span className="letter">
+				<span className="letter_o">o</span>
+				<div className="letter_icon">
+					<LocationIcon />
+				</div>
+			</span>
+			cation
+		</button>
+	);
 };
