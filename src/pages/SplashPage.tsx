@@ -2,14 +2,21 @@ import React from "react";
 import { CitySearch } from "../components/CitySearch";
 import { GeolocationSearch } from "../components/GeolocationSearch";
 import "./splashPage.scss";
+import { World } from "../assets/icons/World";
+
 export const SplashPage = () => {
 	return (
 		<div className="splash-page">
-			<span>Enter the name of your city</span>
-			<CitySearch />
-			<span>or</span>
-			<span>get the weather forecast using</span>
-			<GeolocationSearch />
+			<div className="splash-page_background">
+				<World />
+			</div>
+			<div className="splash-page_context">
+				<span>Enter the name of your city</span>
+				<CitySearch />
+				<span>or</span>
+				<span>get the weather forecast using</span>
+				<GeolocationSearch />
+			</div>
 		</div>
 	);
 };

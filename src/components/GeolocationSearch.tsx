@@ -36,14 +36,16 @@ export const GeolocationSearch = () => {
 
 	return (
 		<button className="geolocation-search" onClick={handleLocationClick}>
-			geol
-			<span className="letter">
-				<span className="letter_o">o</span>
-				<div className="letter_icon">
-					<LocationIcon />
-				</div>
+			<span className="geolocation-search_text">
+				geol
+				<span className="letter">
+					<span className="letter_o">o</span>
+					<div className="letter_icon">
+						<LocationIcon />
+					</div>
+				</span>
+				cation
 			</span>
-			cation
 		</button>
 	);
 };
