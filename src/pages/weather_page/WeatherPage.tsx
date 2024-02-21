@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
-import { CitySearch } from "../components/CitySearch";
-import { GeolocationSearch } from "../components/GeolocationSearch";
+import { CitySearch } from "../../components/CitySearch";
+import { GeolocationSearch } from "../../components/GeolocationSearch";
 import { ForecastPage } from "./ForecastPage";
-import { locationsContext } from "../App";
+import { locationsContext } from "../../App";
 
 export const WeatherPage = () => {
 	const { locations } = useContext(locationsContext);

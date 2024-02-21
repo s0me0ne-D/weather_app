@@ -18,6 +18,9 @@
 			height: 100vh;
 			path {
 				fill: var(--var-secondary-color);
+				stroke: var(--var-primary-color);
+				stroke-width: 1px;
+				stroke-linejoin: round;
 			}
 		}
 	}
@@ -28,8 +31,6 @@
 		text-align: center;
 		z-index: 999;
 		font-size: max(25px, min(2vw, 3rem));
-		padding: 50px;
-		border-radius: 10px;
 	}
 	span {
 		color: var(--var-text-color);

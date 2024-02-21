@@ -1,329 +1,169 @@
 export interface IWeather {
-	columns: Columns;
-	remainingCost: number;
 	queryCost: number;
-	messages: any;
-	locations: any;
-}
-
-export interface Columns {
-	wdir: Wdir;
-	uvindex: Uvindex;
-	latitude: Latitude;
-	preciptype: Preciptype;
-	cin: Cin;
-	cloudcover: Cloudcover;
-	pop: Pop;
-	mint: Mint;
-	datetime: Datetime;
-	precip: Precip;
-	solarradiation: Solarradiation;
-	dew: Dew;
-	humidity: Humidity;
-	longitude: Longitude;
-	temp: Temp;
-	address: Address;
-	maxt: Maxt;
-	visibility: Visibility;
-	wspd: Wspd;
-	severerisk: Severerisk;
-	solarenergy: Solarenergy;
-	resolvedAddress: ResolvedAddress;
-	heatindex: Heatindex;
-	snowdepth: Snowdepth;
-	sealevelpressure: Sealevelpressure;
-	snow: Snow;
-	name: Name;
-	wgust: Wgust;
-	conditions: Conditions;
-	windchill: Windchill;
-	cape: Cape;
-}
-
-export interface Wdir {
-	id: string;
-	name: string;
-	type: number;
-	unit: any;
-}
-
-export interface Uvindex {
-	id: string;
-	name: string;
-	type: number;
-	unit: any;
-}
-
-export interface Latitude {
-	id: string;
-	name: string;
-	type: number;
-	unit: any;
-}
-
-export interface Preciptype {
-	id: string;
-	name: string;
-	type: number;
-	unit: any;
-}
-
-export interface Cin {
-	id: string;
-	name: string;
-	type: number;
-	unit: any;
-}
-
-export interface Cloudcover {
-	id: string;
-	name: string;
-	type: number;
-	unit: any;
-}
-
-export interface Pop {
-	id: string;
-	name: string;
-	type: number;
-	unit: any;
-}
-
-export interface Mint {
-	id: string;
-	name: string;
-	type: number;
-	unit: string;
-}
-
-export interface Datetime {
-	id: string;
-	name: string;
-	type: number;
-	unit: any;
-}
-
-export interface Precip {
-	id: string;
-	name: string;
-	type: number;
-	unit: string;
-}
-
-export interface Solarradiation {
-	id: string;
-	name: string;
-	type: number;
-	unit: any;
-}
-
-export interface Dew {
-	id: string;
-	name: string;
-	type: number;
-	unit: string;
-}
-
-export interface Humidity {
-	id: string;
-	name: string;
-	type: number;
-	unit: any;
-}
-
-export interface Longitude {
-	id: string;
-	name: string;
-	type: number;
-	unit: any;
-}
-
-export interface Temp {
-	id: string;
-	name: string;
-	type: number;
-	unit: string;
-}
-
-export interface Address {
-	id: string;
-	name: string;
-	type: number;
-	unit: any;
-}
-
-export interface Maxt {
-	id: string;
-	name: string;
-	type: number;
-	unit: string;
-}
-
-export interface Visibility {
-	id: string;
-	name: string;
-	type: number;
-	unit: string;
-}
-
-export interface Wspd {
-	id: string;
-	name: string;
-	type: number;
-	unit: string;
-}
-
-export interface Severerisk {
-	id: string;
-	name: string;
-	type: number;
-	unit: any;
-}
-
-export interface Solarenergy {
-	id: string;
-	name: string;
-	type: number;
-	unit: any;
-}
-
-export interface ResolvedAddress {
-	id: string;
-	name: string;
-	type: number;
-	unit: any;
-}
-
-export interface Heatindex {
-	id: string;
-	name: string;
-	type: number;
-	unit: string;
-}
-
-export interface Snowdepth {
-	id: string;
-	name: string;
-	type: number;
-	unit: string;
-}
-
-export interface Sealevelpressure {
-	id: string;
-	name: string;
-	type: number;
-	unit: string;
-}
-
-export interface Snow {
-	id: string;
-	name: string;
-	type: number;
-	unit: string;
-}
-
-export interface Name {
-	id: string;
-	name: string;
-	type: number;
-	unit: any;
-}
-
-export interface Wgust {
-	id: string;
-	name: string;
-	type: number;
-	unit: string;
-}
-
-export interface Conditions {
-	id: string;
-	name: string;
-	type: number;
-	unit: any;
-}
-
-export interface Windchill {
-	id: string;
-	name: string;
-	type: number;
-	unit: string;
-}
-
-export interface Cape {
-	id: string;
-	name: string;
-	type: number;
-	unit: any;
-}
-
-export interface ILocation {
-	stationContributions: any;
-	values: Value[];
-	id: string;
-	address: string;
-	name: string;
-	index: number;
 	latitude: number;
 	longitude: number;
-	distance: number;
-	time: number;
-	tz: string;
+	resolvedAddress: string;
+	address: string;
+	timezone: string;
+	tzoffset: number;
+	description: string;
+	days: Day[];
+	alerts: any[];
+	stations: Stations;
 	currentConditions: CurrentConditions;
-	alerts: any;
 }
 
-export interface Value {
-	wdir: number;
-	uvindex: number;
-	datetimeStr: string;
-	preciptype: string;
-	cin: number;
-	cloudcover: number;
-	pop: number;
-	mint: number;
-	datetime: number;
-	precip: number;
-	solarradiation: number;
+export interface Day {
+	datetime: string;
+	datetimeEpoch: number;
+	tempmax: number;
+	tempmin: number;
+	temp: number;
+	feelslikemax: number;
+	feelslikemin: number;
+	feelslike: number;
 	dew: number;
 	humidity: number;
-	temp: number;
-	maxt: number;
-	visibility: number;
-	wspd: number;
-	severerisk: number;
-	solarenergy: number;
-	heatindex: any;
-	snowdepth: number;
-	sealevelpressure: number;
+	precip: number;
+	precipprob: number;
+	precipcover: number;
+	preciptype?: string[] | null;
 	snow: number;
-	wgust: number;
+	snowdepth: number;
+	windgust: number;
+	windspeed: number;
+	winddir: number;
+	pressure: number;
+	cloudcover: number;
+	visibility: number;
+	solarradiation: number;
+	solarenergy: number;
+	uvindex: number;
+	severerisk: number;
+	sunrise: string;
+	sunriseEpoch: number;
+	sunset: string;
+	sunsetEpoch: number;
+	moonphase: number;
 	conditions: string;
-	windchill: number;
-	cape: number;
+	description: string;
+	icon: string;
+	stations?: string[] | null;
+	source: string;
+	hours: Hour[];
+}
+
+export interface Hour {
+	datetime: string;
+	datetimeEpoch: number;
+	temp: number;
+	feelslike: number;
+	humidity: number;
+	dew: number;
+	precip: number;
+	precipprob: number;
+	snow: number;
+	snowdepth: number;
+	preciptype?: string[] | null;
+	windgust: number;
+	windspeed: number;
+	winddir: number;
+	pressure: number;
+	visibility: number;
+	cloudcover: number;
+	solarradiation: number;
+	solarenergy: number;
+	uvindex: number;
+	severerisk: number;
+	conditions: string;
+	icon: string;
+	stations?: string[] | null;
+	source: string;
+}
+
+export interface Stations {
+	AV722: Av722;
+	E1158: E1158;
+	F4529: F4529;
+	EPWR: Epwr;
+}
+
+export interface Av722 {
+	distance: number;
+	latitude: number;
+	longitude: number;
+	useCount: number;
+	id: string;
+	name: string;
+	quality: number;
+	contribution: number;
+}
+
+export interface E1158 {
+	distance: number;
+	latitude: number;
+	longitude: number;
+	useCount: number;
+	id: string;
+	name: string;
+	quality: number;
+	contribution: number;
+}
+
+export interface F4529 {
+	distance: number;
+	latitude: number;
+	longitude: number;
+	useCount: number;
+	id: string;
+	name: string;
+	quality: number;
+	contribution: number;
+}
+
+export interface Epwr {
+	distance: number;
+	latitude: number;
+	longitude: number;
+	useCount: number;
+	id: string;
+	name: string;
+	quality: number;
+	contribution: number;
 }
 
 export interface CurrentConditions {
-	wdir: number;
-	temp: number;
-	sunrise: string;
-	visibility: number;
-	wspd: number;
-	icon: IconType;
-	stations: string;
-	heatindex: any;
-	cloudcover: any;
 	datetime: string;
-	precip: number;
-	moonphase: number;
-	snowdepth: any;
-	sealevelpressure: number;
-	dew: number;
-	sunset: string;
+	datetimeEpoch: number;
+	temp: number;
+	feelslike: number;
 	humidity: number;
-	wgust: number;
-	windchill: any;
+	dew: number;
+	precip: number;
+	precipprob: number;
+	snow: number;
+	snowdepth: number;
+	preciptype: any;
+	windgust: number;
+	windspeed: number;
+	winddir: number;
+	pressure: number;
+	visibility: number;
+	cloudcover: number;
+	solarradiation: number;
+	solarenergy: number;
+	uvindex: number;
+	conditions: string;
+	icon: string;
+	stations: string[] | null;
+	source: string;
+	sunrise: string;
+	sunriseEpoch: number;
+	sunset: string;
+	sunsetEpoch: number;
+	moonphase: number;
 }
+
 export type IconType =
 	| "snow"
 	| "rain"

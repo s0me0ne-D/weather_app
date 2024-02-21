@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import { SplashPage } from "./pages/SplashPage";
 import { useLocalStorage } from "./hooks/useLocalStorage";
-import { WeatherPage } from "./pages/WeatherPage";
+import { WeatherPage } from "./pages/weather_page/WeatherPage";
 import { createContext } from "react";
 
 export const locationsContext = createContext({
