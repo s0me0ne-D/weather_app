@@ -1,5 +1,5 @@
 import React from "react";
-import "./App.css";
+import "./App.scss";
 import { SplashPage } from "./pages/SplashPage";
 import { useLocalStorage } from "./hooks/useLocalStorage";
 import { WeatherPage } from "./pages/weather_page/WeatherPage";
@@ -13,7 +13,7 @@ export const locationsContext = createContext({
 function App() {
 	const [locations, setLocations] = useLocalStorage([]);
 	return (
-		<div className="night">
+		<div className="App night">
 			<locationsContext.Provider value={{ locations, setLocations }}>
 				{locations.length > 0 ? <WeatherPage /> : <SplashPage />}
 			</locationsContext.Provider>

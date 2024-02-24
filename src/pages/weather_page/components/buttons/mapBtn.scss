@@ -1,0 +1,58 @@
+@keyframes appears {
+	0% {
+		opacity: 0;
+		transform: scale(0.5);
+		visibility: visible;
+	}
+	50% {
+	}
+	100% {
+		opacity: 1;
+		transform: scale(1);
+		visibility: visible;
+	}
+}
+@keyframes disappears {
+	50% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 0;
+		display: none;
+		transform: scale(0.5);
+	}
+}
+
+.map-button {
+	width: 100px;
+	span {
+		z-index: 999;
+		animation: appears 0.3s ease-in forwards;
+	}
+	svg {
+		position: absolute;
+		top: 25%;
+		left: 30%;
+		visibility: hidden;
+	}
+	&::before {
+		background: linear-gradient(
+			141deg,
+			rgba(255, 224, 92, 1) 22%,
+			rgba(255, 121, 62, 1) 68%,
+			rgba(255, 59, 92, 1) 100%
+		);
+	}
+}
+.active-btn {
+	&:before {
+		opacity: 1;
+	}
+	transform: scale(1.05);
+	span {
+		animation: disappears 0.3s ease-in forwards;
+	}
+	svg {
+		animation: appears 0.3s ease-in forwards;
+	}
+}
