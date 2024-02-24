@@ -2,7 +2,8 @@ import React, { useContext, useEffect, useLayoutEffect } from "react";
 import { useGetForecastByCityQuery } from "../../redux/api";
 import { locationsContext } from "../../App";
 import { ISerializedError } from "../../interfaces/api_interface";
-import { CityDate } from "./components/CityDate";
+import { CityDate } from "./components/city_date/CityDate";
+import "./forecastPage.scss";
 
 export const ForecastPage = ({ city }: { city: string }) => {
 	const { data, error, isError, isLoading, isFetching } = useGetForecastByCityQuery(city);
@@ -21,5 +22,5 @@ export const ForecastPage = ({ city }: { city: string }) => {
 	// 	console.log(data);
 	// }, [data]);
 
-	return <div>{data && <CityDate adress={data.resolvedAddress} />}</div>;
+	return <div className="forecast">{data && <CityDate adress={data.resolvedAddress} />}</div>;
 };

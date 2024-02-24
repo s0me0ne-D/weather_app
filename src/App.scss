@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap");
+@import "./styles/styles";
 body {
 	font-family: "Red Hat Display";
 	font-weight: 500;
@@ -8,4 +9,5 @@ body {
 	width: 100%;
 	height: 100svh;
 	overflow: hidden;
+	color: white;
 }
