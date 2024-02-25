@@ -1,0 +1,67 @@
+.wind {
+	display: flex;
+	flex-direction: column;
+	&_description {
+		display: flex;
+	}
+	&_title {
+		display: flex;
+		align-items: center;
+		opacity: 0.5;
+		svg {
+			width: 20px;
+			height: 20px;
+		}
+		font-size: max(15px, min(1vw, 1rem));
+	}
+	&_info {
+		min-width: 50%;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		gap: 5px;
+		&_speed {
+			display: flex;
+			gap: 5px;
+			&_value {
+				font-size: max(20px, min(3vw, 3rem));
+			}
+			&_des {
+				min-height: 100%;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				opacity: 0.5;
+			}
+		}
+		span {
+		}
+		&_line {
+			display: block;
+			height: 2px;
+			width: 95%;
+			background-color: white;
+			opacity: 0.2;
+		}
+	}
+	&_compass {
+		min-width: 50%;
+		position: relative;
+		svg {
+			width: 100%;
+			height: 100%;
+		}
+		.s0 {
+			fill: transparent;
+		}
+		.s1 {
+			fill: white;
+		}
+	}
+}
+.compass-arrow {
+	position: absolute;
+	top: 0;
+	left: 1px;
+}

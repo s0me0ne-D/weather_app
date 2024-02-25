@@ -9,13 +9,9 @@
 	}
 	&.left {
 		grid-column: 1;
-		border-top-right-radius: 5px;
-		border-bottom-right-radius: 5px;
 	}
 	&.right {
 		grid-column: 3;
-		border-top-left-radius: 5px;
-		border-bottom-left-radius: 5px;
 	}
 	&:hover {
 		background-color: var(--var-tertiary-color);

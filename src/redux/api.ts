@@ -10,7 +10,7 @@ export const weatherApi = createApi({
 	}),
 	endpoints: (builder) => ({
 		getForecastByCity: builder.query<IWeather, string>({
-			query: (city) => `${city}/next7days?unitGroup=metric&key=` + process.env.REACT_APP_API_KEY,
+			query: (city) => `${city}/next7days?unitGroup=uk&key=` + process.env.REACT_APP_API_KEY,
 		}),
 	}),
 });

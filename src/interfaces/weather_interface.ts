@@ -164,7 +164,7 @@ export interface CurrentConditions {
 	moonphase: number;
 }
 
-export type IconType =
+export type IIconType =
 	| "snow"
 	| "rain"
 	| "fog"

@@ -4,6 +4,9 @@ import { locationsContext } from "../../App";
 import { ISerializedError } from "../../interfaces/api_interface";
 import { CityDate } from "./components/city_date/CityDate";
 import "./forecastPage.scss";
+import { CurrentConditionIcon } from "./components/current_condition_icon/CurrentConditionIcon";
+import { IIconType } from "../../interfaces/weather_interface";
+import { WindInfo } from "./components/wind_info/WindInfo";
 
 export const ForecastPage = ({ city }: { city: string }) => {
 	const { data, error, isError, isLoading, isFetching } = useGetForecastByCityQuery(city);
@@ -18,9 +21,27 @@ export const ForecastPage = ({ city }: { city: string }) => {
 			}
 		}
 	}, [isError]);
-	// useEffect(() => {
-	// 	console.log(data);
-	// }, [data]);
+	useEffect(() => {
+		console.log(data);
+	}, [data]);
 
-	return <div className="forecast">{data && <CityDate adress={data.resolvedAddress} />}</div>;
+	return data ? (
+		<div className="forecast">
+			<CityDate adress={data.resolvedAddress} />
+			<div className="forecast_temp forecast-element">
+				<div className="forecast_temp_block">
+					{Math.floor(data.currentConditions.temp)}
+					<span className="forecast_temp_deg">°c</span>
+				</div>
+			</div>
+			<CurrentConditionIcon condition={data.currentConditions.icon as IIconType} />
+			<WindInfo
+				deg={data.currentConditions.winddir}
+				windspeed={data.currentConditions.windspeed}
+				windgust={data.currentConditions.windgust}
+			/>
+		</div>
+	) : (
+		<>Loading...</>
+	);
 };

@@ -13,7 +13,7 @@ export const Clock = () => {
 				minutes: date.getMinutes(),
 				hours: date.getHours(),
 			});
-		}, 1000);
+		}, 60000);
 
 		return () => clearInterval(intervalId);
 	}, []);
@@ -22,7 +22,7 @@ export const Clock = () => {
 		<div className="city-date_date_clock">
 			{time.hours}
 			<span>:</span>
-			{time.minutes}
+			{time.minutes < 10 ? "0" + time.minutes : time.minutes}
 		</div>
 	);
 };

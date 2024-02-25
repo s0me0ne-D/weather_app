@@ -5,4 +5,20 @@
 	grid-template-columns: repeat(4, 1fr);
 	grid-template-rows: repeat(3, 1fr);
 	gap: 5px;
+	&_temp {
+		display: grid;
+		place-items: center;
+		grid-row: 1;
+		grid-column: 3;
+		font-size: max(30px, min(7vw, 6rem));
+		&_block {
+			display: flex;
+		}
+		&_deg {
+			min-height: 100%;
+			display: block;
+			font-size: max(15px, min(4vw, 3rem));
+			opacity: 0.5;
+		}
+	}
 }
