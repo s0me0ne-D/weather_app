@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IIconType } from "../../../../interfaces/weather_interface";
 import { WeatherIcon } from "./WeatherIcon";
 import "./currentConditionIcon.scss";

@@ -30,7 +30,7 @@ export const WindInfo = ({
 					</div>
 					<span className="wind_info_line"></span>
 					<div className="wind_info_speed">
-						<span className="wind_info_speed_value">{windgust}</span>
+						<span className="wind_info_speed_value">{windgust ? windgust : "-"}</span>
 						<div className="wind_info_speed_des">
 							<span>m/s</span>
 							<span>max</span>
