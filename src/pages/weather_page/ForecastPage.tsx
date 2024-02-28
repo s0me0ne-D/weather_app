@@ -8,6 +8,7 @@ import { CurrentConditionIcon } from "./components/current_condition_icon/Curren
 import { IIconType } from "../../interfaces/weather_interface";
 import { WindInfo } from "./components/wind_info/WindInfo";
 import { HourlyForecast } from "./components/HourlyForecast";
+import { WeeklyForecast } from "./components/weekly_forecast/WeeklyForecast";
 
 export const ForecastPage = ({ city }: { city: string }) => {
 	const { data, error, isError, isLoading, isFetching } = useGetForecastByCityQuery(city);
@@ -41,6 +42,7 @@ export const ForecastPage = ({ city }: { city: string }) => {
 				windspeed={data.currentConditions.windspeed}
 				windgust={data.currentConditions.windgust}
 			/>
+			<WeeklyForecast weekly={data.days} />
 			<HourlyForecast hourly={data.days[0].hours} />
 		</div>
 	) : (
