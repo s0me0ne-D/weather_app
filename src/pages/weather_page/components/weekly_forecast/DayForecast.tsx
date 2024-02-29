@@ -9,7 +9,7 @@ export const DayForecast = ({ forecast }: { forecast: Day }) => {
 	return (
 		<div className="weekly_day">
 			<span>{date}</span>
-			<div>
+			<div className="weekly_day_description">
 				{WeatherIcon(forecast.icon as IIconType)}
 				<span>{conditionHandler(forecast.icon as IIconType)}</span>
 			</div>
