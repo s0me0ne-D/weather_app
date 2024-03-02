@@ -3,17 +3,32 @@ import { Day, IIconType } from "../../../../interfaces/weather_interface";
 import { WeatherIcon } from "../WeatherIcon";
 import { conditionHandler } from "../../../../utils/conditionHandler";
 
-export const DayForecast = ({ forecast }: { forecast: Day }) => {
+export const DayForecast = ({
+	forecast,
+	index,
+	setPopupForecastIndex,
+	setIsHourslyForecastForDate,
+}: {
+	forecast: Day;
+	index: number;
+	setPopupForecastIndex: React.Dispatch<React.SetStateAction<number>>;
+	setIsHourslyForecastForDate: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
 	const date = forecast.datetime.split("-").splice(1, 2).reverse().join("/");
-	console.log(date);
 	return (
-		<div className="weekly_day">
-			<span>{date}</span>
-			<div className="weekly_day_description">
+		<div
+			className="weekly_day"
+			onClick={() => {
+				setPopupForecastIndex(index);
+				setIsHourslyForecastForDate(true);
+			}}
+		>
+			<span className="index">{date}</span>
+			<div className="weekly_day_description index">
 				{WeatherIcon(forecast.icon as IIconType)}
 				<span>{conditionHandler(forecast.icon as IIconType)}</span>
 			</div>
-			<div>
+			<div className="index">
 				{forecast.temp}
 				<span>°C</span>
 			</div>

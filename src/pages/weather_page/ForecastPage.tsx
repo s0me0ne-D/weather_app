@@ -23,9 +23,6 @@ export const ForecastPage = ({ city }: { city: string }) => {
 			}
 		}
 	}, [isError]);
-	useEffect(() => {
-		console.log(data);
-	}, [data]);
 
 	return data ? (
 		<div className="forecast">

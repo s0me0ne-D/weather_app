@@ -2,12 +2,24 @@ import React, { useEffect, useLayoutEffect, useState } from "react";
 import "./hourlyForecast.scss";
 import { Hour, IIconType } from "../../../interfaces/weather_interface";
 import { WeatherIcon } from "./WeatherIcon";
+import { CloseIcon } from "../../../assets/icons/CloseIcon";
 
-export const HourlyForecast = ({ hourly }: { hourly: Array<Hour> }) => {
+export const HourlyForecast = ({
+	hourly,
+	isPopup,
+	date,
+	setIsPopup,
+}: {
+	hourly: Array<Hour>;
+	isPopup?: boolean;
+	date?: string;
+	setIsPopup?: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
 	const [dataTime, setDataTime] = useState<Array<string>>([]);
 	const [isHoverColumnIndex, setIsHoverColumnIndex] = useState(99);
 	const [isCurrentTimeIndex, setIsCurrentTimeIndex] = useState(99);
 	const currentTime = new Date().getHours();
+	const currentHourlyDate = date?.split("-").reverse().join("/");
 	const mouseOn = (index: number) => {
 		setIsHoverColumnIndex(index);
 	};
@@ -19,23 +31,38 @@ export const HourlyForecast = ({ hourly }: { hourly: Array<Hour> }) => {
 		const newTime: Array<string> = [];
 		hourly.forEach((el, index) => {
 			const time = el.datetime.split(":");
-			+time[0] === currentTime && setIsCurrentTimeIndex(index);
+			if (+time[0] === currentTime && !isPopup) {
+				setIsCurrentTimeIndex(index);
+			}
 			newTime.push(time.splice(0, 2).join(":"));
 		});
 		setDataTime(newTime);
 	}, []);
+
 	return (
-		<div className="hourly forecast-element">
+		<div className={`hourly forecast-element ${isPopup ? "popup" : ""}`}>
+			{isPopup && (
+				<button
+					className="popup_close-btn"
+					onClick={() => {
+						setIsPopup && setIsPopup(false);
+					}}
+				>
+					<CloseIcon />
+				</button>
+			)}
 			<table className="hourly_forecast">
 				<tbody>
 					<tr>
-						<th></th>
+						<th className="hourly_forecast_description">
+							{currentHourlyDate && currentHourlyDate}
+						</th>
 						{dataTime.map((time, index) => (
 							<td
 								key={time}
 								className={`hourly_forecast_time bb ${
-									isCurrentTimeIndex === index && "currentTime"
-								} ${isHoverColumnIndex === index && "isHover"}`}
+									isCurrentTimeIndex === index ? "currentTime" : ""
+								} ${isHoverColumnIndex === index ? "isHover" : ""}`}
 								onMouseEnter={() => mouseOn(index)}
 								onMouseLeave={mouseLeave}
 							>
@@ -47,7 +74,7 @@ export const HourlyForecast = ({ hourly }: { hourly: Array<Hour> }) => {
 						<th></th>
 						{hourly.map((hour, index) => (
 							<td
-								className={`bb ${isCurrentTimeIndex === index && "currentTime"} ${
+								className={`bb ${isCurrentTimeIndex === index ? "currentTime" : ""} ${
 									isHoverColumnIndex === index ? "isHover" : ""
 								}`}
 								key={index}
@@ -62,7 +89,7 @@ export const HourlyForecast = ({ hourly }: { hourly: Array<Hour> }) => {
 						<th className="hourly_forecast_description">Temperature</th>
 						{hourly.map((hour, index) => (
 							<td
-								className={`bb ${isCurrentTimeIndex === index && "currentTime"} ${
+								className={`bb ${isCurrentTimeIndex === index ? "currentTime" : ""} ${
 									isHoverColumnIndex === index ? "isHover" : ""
 								}`}
 								key={index}
@@ -80,7 +107,7 @@ export const HourlyForecast = ({ hourly }: { hourly: Array<Hour> }) => {
 						<th className="hourly_forecast_description">Feels like</th>
 						{hourly.map((hour, index) => (
 							<td
-								className={`bb ${isCurrentTimeIndex === index && "currentTime"} ${
+								className={`bb ${isCurrentTimeIndex === index ? "currentTime" : ""} ${
 									isHoverColumnIndex === index ? "isHover" : ""
 								}`}
 								key={index}
@@ -99,7 +126,7 @@ export const HourlyForecast = ({ hourly }: { hourly: Array<Hour> }) => {
 
 						{hourly.map((hour, index) => (
 							<td
-								className={`bb ${isCurrentTimeIndex === index && "currentTime"} ${
+								className={`bb ${isCurrentTimeIndex === index ? "currentTime" : ""} ${
 									isHoverColumnIndex === index ? "isHover" : ""
 								}`}
 								key={index}
@@ -115,7 +142,7 @@ export const HourlyForecast = ({ hourly }: { hourly: Array<Hour> }) => {
 						<th className="hourly_forecast_description">Precipitation chance</th>
 						{hourly.map((hour, index) => (
 							<td
-								className={`${isCurrentTimeIndex === index && "currentTime"} ${
+								className={`${isCurrentTimeIndex === index ? "currentTime" : ""} ${
 									isHoverColumnIndex === index ? "isHover" : ""
 								}`}
 								key={index}
