@@ -1,0 +1,37 @@
+@import "../../../../styles/animations";
+.map {
+	width: 100%;
+	height: calc(100% - 80px);
+	position: absolute;
+	z-index: 999;
+	top: 80px;
+	left: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: var(--var-primary-color);
+	animation: appears_popup 0.2s linear;
+	&_container {
+		height: 100%;
+		position: relative;
+	}
+	svg {
+		height: 100%;
+		path {
+			fill: var(--var-tertiary-color);
+			stroke: var(--var-primary-color);
+			stroke-width: 1px;
+			stroke-linejoin: round;
+		}
+	}
+	&_location {
+		position: absolute;
+		z-index: 999;
+		top: 50%;
+		// left: 48.3%;
+		width: 5px;
+		height: 5px;
+		background: red;
+		border-radius: 50%;
+	}
+}

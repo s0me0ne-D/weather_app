@@ -9,11 +9,16 @@ import { IIconType } from "../../interfaces/weather_interface";
 import { WindInfo } from "./components/wind_info/WindInfo";
 import { HourlyForecast } from "./components/HourlyForecast";
 import { WeeklyForecast } from "./components/weekly_forecast/WeeklyForecast";
+import { useDispatch } from "react-redux";
+import { addForecast } from "../../redux/forecastsSlice";
 
 export const ForecastPage = ({ city }: { city: string }) => {
 	const { data, error, isError, isLoading, isFetching } = useGetForecastByCityQuery(city);
 	const { locations, setLocations } = useContext(locationsContext);
-
+	const dispatch = useDispatch();
+	useEffect(() => {
+		data && dispatch(addForecast(data));
+	}, [data]);
 	//Deleting a city from the array if error.status === 400
 	useLayoutEffect(() => {
 		if (isError) {
