@@ -29,7 +29,7 @@ export const DayForecast = ({
 				<span>{conditionHandler(forecast.icon as IIconType)}</span>
 			</div>
 			<div className="index">
-				{forecast.temp}
+				{Math.floor(forecast.temp)}
 				<span>°C</span>
 			</div>
 		</div>
