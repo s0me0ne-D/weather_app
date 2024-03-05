@@ -1,0 +1,11 @@
+.location {
+	&_marker {
+		width: 15px;
+		height: 15px;
+		position: absolute;
+		transform: translate(-50%, -50%);
+		color: #fff;
+		background: red;
+		border-radius: 50%;
+	}
+}

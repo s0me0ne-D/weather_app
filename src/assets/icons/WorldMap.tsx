@@ -3,7 +3,7 @@ import React from "react";
 export const WorldMap = () => {
 	return (
 		<>
-			<svg version="1.0" id="svg2982" viewBox="0 -2 800 400">
+			<svg version="1.0" id="svg2982" viewBox="0 0 800 400">
 				<g id="Europe">
 					<g id="Ex-Yougoslavie">
 						<path
