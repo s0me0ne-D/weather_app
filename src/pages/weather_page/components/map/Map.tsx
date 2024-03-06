@@ -7,12 +7,20 @@ import { MapLocation } from "./MapLocation";
 
 export const Map = () => {
 	const forecasts = useSelector((state: RootStore) => state.forecastsReducer);
+	const [isActiveLocation, setIsActiveLocation] = useState<number | undefined>(undefined);
+	console.log(isActiveLocation);
 	return (
 		<div className="map">
 			<div className="map_container">
 				<WorldMap />
-				{forecasts.map((location) => (
-					<MapLocation key={location.address} location={location} />
+				{forecasts.map((location, index) => (
+					<MapLocation
+						key={location.address}
+						location={location}
+						index={index}
+						isActiveLocation={isActiveLocation}
+						setIsActiveLocation={setIsActiveLocation}
+					/>
 				))}
 			</div>
 		</div>
