@@ -28,7 +28,7 @@ export const MapLocation = ({
 					setIsActiveLocation((prev) => (prev !== undefined ? undefined : index));
 				}}
 			></div>
-			{isActiveLocation !== undefined && (
+			{isActiveLocation === index && (
 				<div className={`location_pin`} onClick={() => setIsActiveLocation(undefined)}></div>
 			)}
 		</div>

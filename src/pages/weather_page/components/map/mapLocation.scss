@@ -4,6 +4,10 @@
 	50% {
 		top: -6px;
 	}
+	80% {
+		top: -16px;
+		transform: rotate(45deg) scale(1.25);
+	}
 	100% {
 		opacity: 1;
 		transform: rotate(45deg) scale(1);
