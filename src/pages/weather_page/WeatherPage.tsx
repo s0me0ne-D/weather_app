@@ -13,6 +13,7 @@ export const WeatherPage = () => {
 	const [isMap, setIsMap] = useState<boolean>(false);
 	const [translate, setTranslate] = useState(0);
 	const [paginationCounter, setPaginationCounter] = useState(0);
+
 	return (
 		<div className="weather">
 			<header className="weather_header">
@@ -41,8 +42,14 @@ export const WeatherPage = () => {
 					setCounter={setPaginationCounter}
 				/>
 				{isMap && <Map />}
-
-				<div className="pagination-dots"></div>
+				<div className="pagination-dots">
+					{locations.map((location, index) => (
+						<div
+							className={`pagination-dots_dot ${index === paginationCounter ? "active-dot" : ""}`}
+							key={location}
+						></div>
+					))}
+				</div>
 			</main>
 		</div>
 	);

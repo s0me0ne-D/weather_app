@@ -41,9 +41,10 @@
 		width: 10px;
 		height: 10px;
 		border-radius: 50%;
-		background-color: red;
+		background-color: var(--var-tertiary-color);
+		transition: 0.2s ease-in;
 		&.active-dot {
-			background-color: blue;
+			background-color: var(--var-tertiary-color-hover);
 		}
 	}
 }

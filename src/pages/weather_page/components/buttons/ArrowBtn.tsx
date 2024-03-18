@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { ArrowForwardIcon } from "../../../../assets/icons/ArrowForwardIcon";
 import "./arrowBtn.scss";
 import { ArrowBackIcon } from "../../../../assets/icons/ArrowBackIcon";
