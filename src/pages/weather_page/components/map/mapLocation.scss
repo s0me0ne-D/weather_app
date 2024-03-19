@@ -27,24 +27,25 @@ $activeBackground: rgba(255, 224, 92, 1) 22%, rgba(255, 121, 62, 1) 68%, rgba(25
 		opacity: 0.8;
 		border-radius: 50%;
 		background: var(--var-tertiary-color-hover);
-		transition: $transition;
-		&:after {
-			content: "";
-			width: 7px;
-			height: 7px;
-			background-color: var(--var-tertiary-color);
-			position: absolute;
-			left: 2.5px;
-			top: 2.5px;
-			border-radius: 60px;
-		}
+		transition: 0.1s ease-in;
 		&:hover {
+			opacity: 1;
 			transform: scale(1.2);
 		}
 		&.isActiveLocation {
 			transform: rotateX(-60deg);
 			background: linear-gradient(141deg, $activeBackground);
 			z-index: 9999;
+			&:after {
+				content: "";
+				width: 7px;
+				height: 7px;
+				background-color: var(--var-tertiary-color);
+				position: absolute;
+				left: 20.83%;
+				top: 20.83%;
+				border-radius: 50%;
+			}
 		}
 	}
 	&_pin {
