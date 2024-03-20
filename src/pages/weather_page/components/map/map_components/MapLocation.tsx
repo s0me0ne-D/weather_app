@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { IWeather } from "../../../../interfaces/weather_interface";
+import { IWeather } from "../../../../../interfaces/weather_interface";
 import "./mapLocation.scss";
 
 export const MapLocation = ({
@@ -13,6 +13,7 @@ export const MapLocation = ({
 	setIsActiveLocation: React.Dispatch<React.SetStateAction<number | undefined>>;
 	isActiveLocation: number | undefined;
 }) => {
+	console.log(location);
 	const [latitide, setLatitude] = useState(0);
 	const [longitude, setLongitude] = useState(0);
 	useEffect(() => {

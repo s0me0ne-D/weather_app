@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./map.scss";
 import { WorldMap } from "../../../../assets/icons/WorldMap";
 import { useSelector } from "react-redux";
 import { RootStore } from "../../../../redux/store";
-import { MapLocation } from "./MapLocation";
+import { MapLocation } from "./map_components/MapLocation";
+import { MapAddress } from "./map_components/MapAddress";
 
 export const Map = () => {
 	const forecasts = useSelector((state: RootStore) => state.forecastsReducer);
@@ -23,6 +24,9 @@ export const Map = () => {
 					/>
 				))}
 			</div>
+			{forecasts.map((location) => (
+				<MapAddress location={location} />
+			))}
 		</div>
 	);
 };
