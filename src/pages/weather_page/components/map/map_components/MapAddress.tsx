@@ -11,8 +11,7 @@ export const MapAddress = ({ location }: { location: IWeather }) => {
 		<div className="map-address">
 			<div className="map-address_description">
 				<div className="map-address_description_location-address">
-					<span>{cityName}</span>
-					<span>{country}</span>
+					<span>{cityName}</span>,<span>{country}</span>
 				</div>
 				<div className="map-address_description_forecast">
 					<div className="map-address_description_forecast_temp">

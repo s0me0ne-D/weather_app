@@ -1,12 +1,26 @@
 .map-address {
 	// transform: translateX(-90%);
 
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	background-color: var(--var-secondary-color);
 	&_description {
+		padding: 10px;
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+
 		&_location-address {
+			font-size: 30px;
+			text-align: end;
 		}
+
 		&_forecast {
 			display: flex;
 			align-items: center;
+			justify-content: flex-end;
+			gap: 10px;
 			&_temp {
 				display: flex;
 				font-size: 25px;
@@ -28,5 +42,8 @@
 	}
 
 	&_border {
+		width: 10px;
+		height: 90px;
+		background-color: aqua;
 	}
 }
