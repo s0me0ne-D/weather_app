@@ -81,7 +81,7 @@ export const HourlyForecast = ({
 								onMouseEnter={() => mouseOn(index)}
 								onMouseLeave={mouseLeave}
 							>
-								{WeatherIcon(hour.icon as IIconType)}
+								<WeatherIcon condition={hour.icon as IIconType} />
 							</td>
 						))}
 					</tr>

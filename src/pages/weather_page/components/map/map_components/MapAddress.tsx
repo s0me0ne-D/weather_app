@@ -2,6 +2,8 @@ import React from "react";
 import { IIconType, IWeather } from "../../../../../interfaces/weather_interface";
 import { addressHandler } from "../../../../../utils/addressHandler";
 import { CurrentConditionIcon } from "../../current_condition_icon/CurrentConditionIcon";
+import "./mapAdress.scss";
+import { WeatherIcon } from "../../WeatherIcon";
 
 export const MapAddress = ({ location }: { location: IWeather }) => {
 	const { cityName, country } = addressHandler(location.resolvedAddress);
@@ -12,14 +14,13 @@ export const MapAddress = ({ location }: { location: IWeather }) => {
 					<span>{cityName}</span>
 					<span>{country}</span>
 				</div>
-				<div className="address_description_forecast">
-					<div className="address_description_forecast_temp">
+				<div className="map-address_description_forecast">
+					<div className="map-address_description_forecast_temp">
 						{location.currentConditions.temp}
 						<span>°C</span>
 					</div>
-					<CurrentConditionIcon condition={location.currentConditions.icon as IIconType} />
-					<div className="address_description_forecast_condition">
-						{location.currentConditions.conditions}
+					<div className="map-address_description_forecast_icon">
+						<WeatherIcon condition={location.currentConditions.icon as IIconType} />
 					</div>
 				</div>
 			</div>

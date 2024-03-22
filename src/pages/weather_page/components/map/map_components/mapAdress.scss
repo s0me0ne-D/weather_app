@@ -1,0 +1,32 @@
+.map-address {
+	// transform: translateX(-90%);
+
+	&_description {
+		&_location-address {
+		}
+		&_forecast {
+			display: flex;
+			align-items: center;
+			&_temp {
+				display: flex;
+				font-size: 25px;
+				span:nth-child(1) {
+					display: block;
+					height: 100%;
+					font-size: 17px;
+					opacity: 0.5;
+				}
+			}
+			&_icon {
+				display: grid;
+				place-content: center;
+				svg {
+					width: 30px;
+				}
+			}
+		}
+	}
+
+	&_border {
+	}
+}

@@ -24,9 +24,11 @@ export const Map = () => {
 					/>
 				))}
 			</div>
-			{forecasts.map((location) => (
-				<MapAddress location={location} />
-			))}
+			<div className="map_location">
+				{forecasts.map((location) => (
+					<MapAddress location={location} />
+				))}
+			</div>
 		</div>
 	);
 };

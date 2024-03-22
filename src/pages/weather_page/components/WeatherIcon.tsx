@@ -10,7 +10,7 @@ import { Rain } from "../../../assets/icons/forecast_icons/Rain";
 import { Snow } from "../../../assets/icons/forecast_icons/Snow";
 import { Windy } from "../../../assets/icons/forecast_icons/Windy";
 
-export const WeatherIcon = (condition: IIconType): JSX.Element | undefined => {
+export const WeatherIcon = ({ condition }: { condition: IIconType }): JSX.Element => {
 	switch (condition) {
 		case "clear-day":
 			return <ClearDay />;
@@ -30,7 +30,5 @@ export const WeatherIcon = (condition: IIconType): JSX.Element | undefined => {
 			return <Snow />;
 		case "wind":
 			return <Windy />;
-		default:
-			return undefined;
 	}
 };
