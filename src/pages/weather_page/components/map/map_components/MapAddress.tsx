@@ -5,10 +5,20 @@ import { CurrentConditionIcon } from "../../current_condition_icon/CurrentCondit
 import "./mapAdress.scss";
 import { WeatherIcon } from "../../WeatherIcon";
 
-export const MapAddress = ({ location }: { location: IWeather }) => {
+export const MapAddress = ({
+	location,
+	index,
+	setIsActiveLocation,
+	isActiveLocation,
+}: {
+	location: IWeather;
+	index: number;
+	setIsActiveLocation: React.Dispatch<React.SetStateAction<number | undefined>>;
+	isActiveLocation: number | undefined;
+}) => {
 	const { cityName, country } = addressHandler(location.resolvedAddress);
 	return (
-		<div className="map-address">
+		<div className={`map-address ${isActiveLocation === index ? "isActiveAddress" : ""}`}>
 			<div className="map-address_description">
 				<div className="map-address_description_location-address">
 					<span>{cityName}</span>,<span>{country}</span>
@@ -23,7 +33,12 @@ export const MapAddress = ({ location }: { location: IWeather }) => {
 					</div>
 				</div>
 			</div>
-			<div className="map-address_border"></div>
+			<div
+				className={`map-address_border ${isActiveLocation === index ? "isActiveBorder" : ""}`}
+				onClick={() => {
+					setIsActiveLocation((prev) => (prev !== undefined && index === prev ? undefined : index));
+				}}
+			></div>
 		</div>
 	);
 };

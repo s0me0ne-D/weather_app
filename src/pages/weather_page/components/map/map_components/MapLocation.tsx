@@ -22,11 +22,15 @@ export const MapLocation = ({
 	}, [location]);
 
 	return (
-		<div className="location" style={{ top: `${latitide}%`, left: `${longitude}%` }}>
+		<div
+			className="location"
+			style={{ top: `${latitide}%`, left: `${longitude}%` }}
+			title={location.resolvedAddress}
+		>
 			<div
 				className={`location_marker ${isActiveLocation === index ? "isActiveLocation" : ""}`}
 				onClick={() => {
-					setIsActiveLocation((prev) => (prev !== undefined ? undefined : index));
+					setIsActiveLocation((prev) => (prev !== undefined && index === prev ? undefined : index));
 				}}
 			></div>
 			{isActiveLocation === index && (

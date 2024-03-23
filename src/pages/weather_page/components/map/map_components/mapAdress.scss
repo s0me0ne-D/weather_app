@@ -1,13 +1,13 @@
+$BORDER_RADIUS: 0 3px 3px 0;
 .map-address {
-	$BORDER_RADIUS: 0 3px 3px 0;
-
-	// transform: translateX(-90%);
-
+	max-width: fit-content;
 	display: flex;
 	justify-content: flex-end;
 	align-items: center;
+	transform: translateX(calc(-100% + 10px));
 	background-color: var(--var-secondary-color);
 	border-radius: $BORDER_RADIUS;
+	transition: 0.3s ease-in;
 	&_description {
 		padding: 10px;
 		display: flex;
@@ -48,13 +48,9 @@
 		width: 10px;
 		height: 85px;
 		position: relative;
-		background: linear-gradient(
-			141deg,
-			rgba(187, 193, 248, 1) 27%,
-			rgba(110, 218, 243, 1) 77%,
-			rgba(0, 255, 235, 1) 100%
-		);
+		background: var(--aqua-gradient);
 		border-radius: $BORDER_RADIUS;
+		opacity: 0.8;
 		&::before {
 			content: "";
 			width: 100%;
@@ -62,18 +58,22 @@
 			position: absolute;
 			top: 0;
 			left: 0;
-			background: linear-gradient(
-				141deg,
-				rgba(255, 224, 92, 1) 22%,
-				rgba(255, 121, 62, 1) 68%,
-				rgba(255, 59, 92, 1) 100%
-			);
+			background: var(--fire-gradient);
 			opacity: 0;
 			transition: 0.3s ease-in;
 			border-radius: $BORDER_RADIUS;
 		}
-		&:hover::before {
+		&.isActiveBorder {
+			opacity: 1;
+			&::before {
+				opacity: 1;
+			}
+		}
+		&:hover {
 			opacity: 1;
 		}
+	}
+	&.isActiveAddress {
+		transform: translateX(0);
 	}
 }

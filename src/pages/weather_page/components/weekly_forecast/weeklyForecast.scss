@@ -30,12 +30,7 @@
 			opacity: 0;
 			transition: 0.2s ease-in;
 			border-radius: 3px;
-			background: linear-gradient(
-				141deg,
-				rgba(187, 193, 248, 1) 27%,
-				rgba(110, 218, 243, 1) 77%,
-				rgba(0, 255, 235, 1) 100%
-			);
+			background: var(--aqua-gradient);
 		}
 		&:hover {
 			border-radius: 3px;

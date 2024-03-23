@@ -38,3 +38,17 @@
 	background-color: var(--var-secondary-color);
 	padding: 10px;
 }
+body {
+	--aqua-gradient: linear-gradient(
+		141deg,
+		rgba(187, 193, 248, 1) 27%,
+		rgba(110, 218, 243, 1) 77%,
+		rgba(0, 255, 235, 1) 100%
+	);
+	--fire-gradient: linear-gradient(
+		141deg,
+		rgba(255, 224, 92, 1) 22%,
+		rgba(255, 121, 62, 1) 68%,
+		rgba(255, 59, 92, 1) 100%
+	);
+}
