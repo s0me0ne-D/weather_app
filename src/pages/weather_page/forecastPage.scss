@@ -1,6 +1,6 @@
 .forecast {
 	min-width: 100%;
-	max-height: calc(100svh - 140px);
+	max-height: calc(100svh - 105px);
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
 	grid-template-rows: repeat(3, 1fr);

@@ -17,6 +17,7 @@
 	}
 	&_forecast {
 		display: flex;
+		height: 100%;
 		transition: 0.2s ease-in;
 	}
 }
@@ -25,8 +26,8 @@
 	max-height: 100svh;
 	display: grid;
 	grid-template-columns: 50px 1fr 50px;
+	grid-template-rows: 1fr 10px;
 	gap: 5px;
-	grid-template-rows: 1fr 50px;
 }
 .pagination-dots {
 	width: 100%;
