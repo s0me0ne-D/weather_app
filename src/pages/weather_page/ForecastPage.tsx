@@ -31,7 +31,7 @@ export const ForecastPage = ({ city }: { city: string }) => {
 
 	return data ? (
 		<div className="forecast">
-			<CityDate adress={data.resolvedAddress} />
+			<CityDate adress={data.resolvedAddress} timezone={data.timezone} />
 			<div className="forecast_temp forecast-element">
 				<div className="forecast_temp_block">
 					{Math.floor(data.currentConditions.temp)}

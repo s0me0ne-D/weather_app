@@ -27,6 +27,7 @@ export const Map = () => {
 			<div className="map_location">
 				{forecasts.map((location, index) => (
 					<MapAddress
+						key={location.address}
 						location={location}
 						index={index}
 						isActiveLocation={isActiveLocation}

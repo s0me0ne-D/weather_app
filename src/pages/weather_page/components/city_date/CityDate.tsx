@@ -4,7 +4,7 @@ import { addressHandler } from "../../../../utils/addressHandler";
 import "./cityDate.scss";
 import { Clock } from "./Clock";
 
-export const CityDate = ({ adress }: { adress: string }) => {
+export const CityDate = ({ adress, timezone }: { adress: string; timezone: string }) => {
 	const currentDate = getCurrentDate();
 	const { cityName, country } = addressHandler(adress);
 	return (
@@ -17,7 +17,7 @@ export const CityDate = ({ adress }: { adress: string }) => {
 			<span className="line"></span>
 			<div className="city-date_date">
 				<span className="city-date_date_current">{currentDate}</span>
-				<Clock />
+				<Clock timeZone={timezone} />
 			</div>
 		</div>
 	);
