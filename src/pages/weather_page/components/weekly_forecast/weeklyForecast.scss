@@ -69,6 +69,8 @@
 	background: transparent;
 	backdrop-filter: blur(5px);
 	animation: appears_popup 0.1s linear;
+	grid-row: none;
+	grid-column: none;
 	table {
 		width: 80%;
 		height: 50%;

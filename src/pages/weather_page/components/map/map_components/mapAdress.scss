@@ -51,6 +51,7 @@ $BORDER_RADIUS: 0 3px 3px 0;
 		background: var(--aqua-gradient);
 		border-radius: $BORDER_RADIUS;
 		opacity: 0.8;
+		cursor: pointer;
 		&::before {
 			content: "";
 			width: 100%;
