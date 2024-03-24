@@ -3,6 +3,7 @@ import "./hourlyForecast.scss";
 import { Hour, IIconType } from "../../../interfaces/weather_interface";
 import { WeatherIcon } from "./WeatherIcon";
 import { CloseIcon } from "../../../assets/icons/CloseIcon";
+import { useOutsideClick } from "../../../hooks/useOutsideClick";
 
 export const HourlyForecast = ({
 	hourly,

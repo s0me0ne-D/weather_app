@@ -1,0 +1,9 @@
+@import "./styles/_themes.scss";
+@import "./styles/_reset.scss";
+@font-face {
+	font-family: "Wix";
+	src: url("./assets/fonts/WixMadeforText-VariableFont_wght.ttf") format("truetype");
+}
+body {
+	font-family: "Wix";
+}
