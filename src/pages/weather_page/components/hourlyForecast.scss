@@ -2,7 +2,6 @@
 	grid-row: 3;
 	grid-column: 1 / span 4;
 	display: flex;
-	overflow-x: scroll;
 	&_forecast {
 		width: 100%;
 		border-collapse: collapse;
@@ -40,4 +39,10 @@
 }
 .currentTime {
 	background-color: var(--var-complementary);
+}
+
+@media (width<1000px) {
+	.hourly {
+		overflow-x: scroll;
+	}
 }
