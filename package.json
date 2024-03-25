@@ -12,6 +12,7 @@
 		"@types/node": "^16.18.80",
 		"@types/react": "^18.2.55",
 		"@types/react-dom": "^18.2.19",
+		"lottie-react": "^2.4.0",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"react-redux": "^9.1.0",
