@@ -3,7 +3,6 @@ import "./weeklyForecast.scss";
 import { Day } from "../../../../interfaces/weather_interface";
 import { DayForecast } from "./DayForecast";
 import { HourlyForecast } from "../HourlyForecast";
-import { useOutsideClick } from "../../../../hooks/useOutsideClick";
 
 export const WeeklyForecast = ({ weekly }: { weekly: Array<Day> }) => {
 	const [isHourlyForecastForDate, setIsHourslyForecastForDate] = useState<boolean>(false);

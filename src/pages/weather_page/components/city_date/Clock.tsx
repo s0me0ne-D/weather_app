@@ -25,7 +25,6 @@ export const Clock = ({ timeZone }: { timeZone: string }) => {
 	});
 	const getTime = useCallback(() => {
 		const newTime = new Date().toLocaleTimeString("en-GB", { timeZone }).split(":");
-		console.log("render");
 		setTime({
 			minutes: +newTime[1],
 			hours: +newTime[0],

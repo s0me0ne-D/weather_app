@@ -1,15 +1,19 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { locationsContext } from "../App";
 import "./geolocationSearch.scss";
 import { LocationIcon } from "../assets/icons/LocationIcon";
+import { useDispatch } from "react-redux";
+import { isError, isLoading } from "../redux/geolocationSearchSlice";
 export const GeolocationSearch = () => {
 	const { locations, setLocations } = useContext(locationsContext);
+	const dispatch = useDispatch();
 	function handleLocationClick() {
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(success, error);
 		} else {
-			//ERROR MESSAGE:'Geolocation not supported, please enter city name'
-			console.log("Geolocation not supported");
+			dispatch(
+				isError({ error: true, message: "Geolocation not supported, please enter city name" })
+			);
 		}
 	}
 
@@ -26,12 +30,21 @@ export const GeolocationSearch = () => {
 			})
 
 			.catch((error) => {
-				//ERROR MESSAGE: 'Unable to retrieve your location, please enter city name'
+				dispatch(
+					isError({
+						error: true,
+						message: "Unable to retrieve your location, please enter city name",
+					})
+				);
 			});
 	}
 	function error() {
-		//ERROR MESSAGE: 'Unable to retrieve your location, please enter city name'
-		console.log("Unable to retrieve your location");
+		dispatch(
+			isError({
+				error: true,
+				message: "Unable to retrieve your location, please enter city name",
+			})
+		);
 	}
 
 	return (
