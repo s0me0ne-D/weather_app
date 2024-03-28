@@ -1,15 +1,16 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { locationsContext } from "../App";
 import "./geolocationSearch.scss";
 import { LocationIcon } from "../assets/icons/LocationIcon";
 import { useDispatch } from "react-redux";
-import { isError, isLoading } from "../redux/geolocationSearchSlice";
+import { isError, isLoading, locationExist } from "../redux/geolocationSearchSlice";
 export const GeolocationSearch = () => {
 	const { locations, setLocations } = useContext(locationsContext);
 	const dispatch = useDispatch();
 	function handleLocationClick() {
+		dispatch(isLoading(true));
 		if (navigator.geolocation) {
-			navigator.geolocation.getCurrentPosition(success, error);
+			navigator.geolocation.getCurrentPosition(success, errorHandler);
 		} else {
 			dispatch(
 				isError({ error: true, message: "Geolocation not supported, please enter city name" })
@@ -25,11 +26,14 @@ export const GeolocationSearch = () => {
 			.then((response) => response.json())
 			.then((data) => {
 				if (!(locations as Array<any>).includes(data.address.city)) {
+					dispatch(isLoading(false));
 					setLocations((prev: Array<string>) => [...prev, data.address.city]);
+				} else {
+					dispatch(locationExist(true));
 				}
 			})
 
-			.catch((error) => {
+			.catch(() => {
 				dispatch(
 					isError({
 						error: true,
@@ -38,7 +42,7 @@ export const GeolocationSearch = () => {
 				);
 			});
 	}
-	function error() {
+	function errorHandler() {
 		dispatch(
 			isError({
 				error: true,

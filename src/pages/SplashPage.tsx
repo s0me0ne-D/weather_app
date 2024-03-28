@@ -12,7 +12,7 @@ export const SplashPage = () => {
 	);
 	useEffect(() => {
 		console.log(isError, isLoading, locationExist);
-	}, [isError]);
+	}, [isError, isLoading, locationExist]);
 	return (
 		<div className="splash-page">
 			<div className="splash-page_background">
