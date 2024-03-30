@@ -3,17 +3,21 @@ import { locationsContext } from "../App";
 import "./geolocationSearch.scss";
 import { LocationIcon } from "../assets/icons/LocationIcon";
 import { useDispatch } from "react-redux";
-import { isError, isLoading, locationExist } from "../redux/geolocationSearchSlice";
+import {
+	changeIsError,
+	changeIsLoading,
+	changeLocationExist,
+} from "../redux/geolocationSearchSlice";
 export const GeolocationSearch = () => {
 	const { locations, setLocations } = useContext(locationsContext);
 	const dispatch = useDispatch();
 	function handleLocationClick() {
-		dispatch(isLoading(true));
+		dispatch(changeIsLoading(true));
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(success, errorHandler);
 		} else {
 			dispatch(
-				isError({ error: true, message: "Geolocation not supported, please enter city name" })
+				changeIsError({ error: true, message: "Geolocation not supported, please enter city name" })
 			);
 		}
 	}
@@ -26,16 +30,16 @@ export const GeolocationSearch = () => {
 			.then((response) => response.json())
 			.then((data) => {
 				if (!(locations as Array<any>).includes(data.address.city)) {
-					// dispatch(isLoading(false));
+					dispatch(changeIsLoading(false));
 					setLocations((prev: Array<string>) => [...prev, data.address.city]);
 				} else {
-					dispatch(locationExist(true));
+					dispatch(changeLocationExist(true));
 				}
 			})
 
 			.catch(() => {
 				dispatch(
-					isError({
+					changeIsError({
 						error: true,
 						message: "Unable to retrieve your location, please enter city name",
 					})
@@ -44,7 +48,7 @@ export const GeolocationSearch = () => {
 	}
 	function errorHandler() {
 		dispatch(
-			isError({
+			changeIsError({
 				error: true,
 				message: "Unable to retrieve your location, please enter city name",
 			})

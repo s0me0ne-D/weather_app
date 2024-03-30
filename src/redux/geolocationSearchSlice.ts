@@ -11,18 +11,18 @@ export const geolocationSearch = createSlice({
 	name: "geolocationSearch",
 	initialState,
 	reducers: {
-		isLoading: (state, action: PayloadAction<boolean>) => {
+		changeIsLoading: (state, action: PayloadAction<boolean>) => {
 			state.isLoading = action.payload;
 		},
-		isError: (state, action: PayloadAction<IError>) => {
+		changeIsError: (state, action: PayloadAction<IError>) => {
 			state.isError = action.payload;
 			state.isLoading = false;
 		},
-		locationExist: (state, action: PayloadAction<boolean>) => {
+		changeLocationExist: (state, action: PayloadAction<boolean>) => {
 			state.locationExist = action.payload;
 			state.isLoading = false;
 		},
 	},
 });
 export const geolocationSearchReducer = geolocationSearch.reducer;
-export const { isLoading, isError, locationExist } = geolocationSearch.actions;
+export const { changeIsError, changeIsLoading, changeLocationExist } = geolocationSearch.actions;

@@ -15,8 +15,7 @@ function App() {
 	return (
 		<div className="App night">
 			<locationsContext.Provider value={{ locations, setLocations }}>
-				{/* {locations.length > 0 ? <WeatherPage /> : <SplashPage />} */}
-				<SplashPage />
+				{locations.length > 0 ? <WeatherPage /> : <SplashPage />}
 			</locationsContext.Provider>
 		</div>
 	);
