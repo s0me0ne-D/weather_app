@@ -5,6 +5,7 @@ import "./splashPage.scss";
 import { World } from "../assets/icons/World";
 import { RootStore } from "../redux/store";
 import { useSelector } from "react-redux";
+import { Popup } from "../components/Popup";
 
 export const SplashPage = () => {
 	const { isError, isLoading, locationExist } = useSelector(
@@ -25,6 +26,7 @@ export const SplashPage = () => {
 				<span>get the weather forecast using</span>
 				<GeolocationSearch />
 			</div>
+			{isError.error || isLoading || locationExist ? <Popup /> : null}
 		</div>
 	);
 };

@@ -1,0 +1,26 @@
+.location-popup {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 40px;
+	background: rgba(255, 255, 255, 0.002);
+	&_description {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 20px;
+		span {
+			display: inline-block;
+			font-size: 1.2rem;
+		}
+		svg {
+			max-width: 10rem;
+			max-height: 10rem;
+		}
+	}
+	&_btn {
+		width: 10rem;
+		height: 40px;
+	}
+}

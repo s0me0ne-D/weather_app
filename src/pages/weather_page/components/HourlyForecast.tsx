@@ -40,10 +40,10 @@ export const HourlyForecast = ({
 	}, []);
 
 	return (
-		<div className={`hourly forecast-element ${isPopup ? "popup" : ""}`}>
+		<div className={`hourly forecast-element ${isPopup ? "popup popup-hourly" : ""}`}>
 			{isPopup && (
 				<button
-					className="popup_close-btn"
+					className="popup-hourly_close-btn"
 					onClick={() => {
 						setIsPopup && setIsPopup(false);
 					}}
