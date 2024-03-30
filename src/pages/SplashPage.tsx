@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { CitySearch } from "../components/CitySearch";
 import { GeolocationSearch } from "../components/GeolocationSearch";
 import "./splashPage.scss";
