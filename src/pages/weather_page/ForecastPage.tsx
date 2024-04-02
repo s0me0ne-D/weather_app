@@ -45,7 +45,7 @@ export const ForecastPage = ({ city }: { city: string }) => {
 				windgust={data.currentConditions.windgust}
 			/>
 			<WeeklyForecast weekly={data.days} />
-			<HourlyForecast hourly={data.days[0].hours} />
+			<HourlyForecast hourly={data.days[0].hours} timezone={data.timezone} />
 		</div>
 	) : (
 		<>Loading...</>

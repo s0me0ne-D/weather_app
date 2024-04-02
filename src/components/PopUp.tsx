@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootStore } from "../redux/store";
 import searchAnimation from "../assets/animations/locationSearchAnimation.json";
 import attentionAnimation from "../assets/animations/attentionAnimation.json";
-import Lottie, { useLottie } from "lottie-react";
+import { useLottie } from "lottie-react";
 import { changeIsError, changeLocationExist } from "../redux/geolocationSearchSlice";
 import "./popup.scss";
 
@@ -35,7 +35,8 @@ export const Popup = () => {
 	return (
 		<div className="popup location-popup">
 			<div className="location-popup_description">
-				{View} {isError.error && <span>{isError.message}</span>}
+				{View}
+				{isError.error && <span>{isError.message}</span>}
 				{locationExist && <span>Location already exist</span>}
 			</div>
 			{!isLoading && (

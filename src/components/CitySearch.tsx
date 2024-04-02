@@ -16,7 +16,7 @@ export const CitySearch = () => {
 					!(locations as Array<string>).includes(value) &&
 					value.length !== 0
 				) {
-					setLocations((prev: Array<string>) => [...prev, value]);
+					setLocations((prev: Array<string>) => [value, ...prev]);
 					setValue("");
 				}
 			}}

@@ -1,24 +1,26 @@
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import "./hourlyForecast.scss";
 import { Hour, IIconType } from "../../../interfaces/weather_interface";
 import { WeatherIcon } from "./WeatherIcon";
 import { CloseIcon } from "../../../assets/icons/CloseIcon";
+import { getLocalTime } from "../../../utils/getLocalTime";
 
 export const HourlyForecast = ({
 	hourly,
 	isPopup,
 	date,
+	timezone,
 	setIsPopup,
 }: {
 	hourly: Array<Hour>;
 	isPopup?: boolean;
 	date?: string;
+	timezone?: string;
 	setIsPopup?: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
 	const [dataTime, setDataTime] = useState<Array<string>>([]);
 	const [isHoverColumnIndex, setIsHoverColumnIndex] = useState(99);
 	const [isCurrentTimeIndex, setIsCurrentTimeIndex] = useState(99);
-	const currentTime = new Date().getHours();
 	const currentHourlyDate = date?.split("-").reverse().join("/");
 	const mouseOn = (index: number) => {
 		setIsHoverColumnIndex(index);
@@ -28,15 +30,18 @@ export const HourlyForecast = ({
 	};
 
 	useLayoutEffect(() => {
-		const newTime: Array<string> = [];
-		hourly.forEach((el, index) => {
-			const time = el.datetime.split(":");
-			if (+time[0] === currentTime && !isPopup) {
-				setIsCurrentTimeIndex(index);
-			}
-			newTime.push(time.splice(0, 2).join(":"));
-		});
-		setDataTime(newTime);
+		if (timezone) {
+			const newTime: Array<string> = [];
+			const localHour = getLocalTime(timezone).substring(0, 2);
+			hourly.forEach((el, index) => {
+				const time = el.datetime.split(":");
+				if (time[0] === localHour && !isPopup) {
+					setIsCurrentTimeIndex(index);
+				}
+				newTime.push(time.splice(0, 2).join(":"));
+			});
+			setDataTime(newTime);
+		}
 	}, []);
 
 	return (

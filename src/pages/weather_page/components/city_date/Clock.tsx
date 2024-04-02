@@ -1,22 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-
-interface IDate {
-	abbreviation: string;
-	client_ip: string;
-	datetime: string;
-	day_of_week: number;
-	day_of_year: number;
-	dst: boolean;
-	dst_from: null;
-	dst_offset: number;
-	dst_until: null;
-	raw_offset: number;
-	timezone: string;
-	unixtime: number;
-	utc_datetime: string;
-	utc_offset: string;
-	week_number: number;
-}
+import { getLocalTime } from "../../../../utils/getLocalTime";
 
 export const Clock = ({ timeZone }: { timeZone: string }) => {
 	const [time, setTime] = useState({
@@ -24,10 +7,10 @@ export const Clock = ({ timeZone }: { timeZone: string }) => {
 		minutes: 0,
 	});
 	const getTime = useCallback(() => {
-		const newTime = new Date().toLocaleTimeString("en-GB", { timeZone }).split(":");
+		const localTime = getLocalTime(timeZone).split(":");
 		setTime({
-			minutes: +newTime[1],
-			hours: +newTime[0],
+			minutes: +localTime[1],
+			hours: +localTime[0],
 		});
 	}, []);
 	useEffect(() => {
