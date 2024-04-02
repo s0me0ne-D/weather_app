@@ -15,12 +15,12 @@ export const geolocationSearch = createSlice({
 			state.isLoading = action.payload;
 		},
 		changeIsError: (state, action: PayloadAction<IError>) => {
-			state.isError = action.payload;
 			state.isLoading = false;
+			state.isError = action.payload;
 		},
 		changeLocationExist: (state, action: PayloadAction<boolean>) => {
-			state.locationExist = action.payload;
 			state.isLoading = false;
+			state.locationExist = action.payload;
 		},
 	},
 });

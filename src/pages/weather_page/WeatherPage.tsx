@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { CitySearch } from "../../components/CitySearch";
 import { GeolocationSearch } from "../../components/GeolocationSearch";
 import { ForecastPage } from "./ForecastPage";
@@ -7,12 +7,18 @@ import "./weatherPage.scss";
 import { MapBtn } from "./components/buttons/MapBtn";
 import { ArrowBtn } from "./components/buttons/ArrowBtn";
 import { Map } from "./components/map/Map";
+import { useSelector } from "react-redux";
+import { RootStore } from "../../redux/store";
+import { Popup } from "../../components/Popup";
 
 export const WeatherPage = () => {
 	const { locations } = useContext(locationsContext);
 	const [isMap, setIsMap] = useState<boolean>(false);
 	const [translate, setTranslate] = useState(0);
 	const [paginationCounter, setPaginationCounter] = useState(0);
+	const { isError, isLoading, locationExist } = useSelector(
+		(store: RootStore) => store.geolocationSearchReducer
+	);
 
 	return (
 		<div className="weather">
@@ -51,6 +57,7 @@ export const WeatherPage = () => {
 					))}
 				</div>
 			</main>
+			{isError.error || isLoading || locationExist ? <Popup /> : null}
 		</div>
 	);
 };
