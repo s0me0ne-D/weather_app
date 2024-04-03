@@ -32,21 +32,6 @@ $activeBackground: rgba(255, 224, 92, 1) 22%, rgba(255, 121, 62, 1) 68%, rgba(25
 			opacity: 1;
 			transform: scale(1.2);
 		}
-		&.isActiveLocation {
-			transform: rotateX(-60deg);
-			background: linear-gradient(141deg, $activeBackground);
-			z-index: 9999;
-			&:after {
-				content: "";
-				width: 7px;
-				height: 7px;
-				background-color: var(--var-tertiary-color);
-				position: absolute;
-				left: 20.83%;
-				top: 20.83%;
-				border-radius: 50%;
-			}
-		}
 	}
 	&_pin {
 		width: 12px;
@@ -69,6 +54,26 @@ $activeBackground: rgba(255, 224, 92, 1) 22%, rgba(255, 121, 62, 1) 68%, rgba(25
 			left: 26%;
 			top: 26%;
 			border-radius: 60px;
+		}
+	}
+}
+.isActiveLocation {
+	z-index: 9999;
+	.location {
+		&_marker {
+			transform: rotateX(-60deg);
+			background: linear-gradient(141deg, $activeBackground);
+			opacity: 1;
+			&:after {
+				content: "";
+				width: 7px;
+				height: 7px;
+				background-color: var(--var-tertiary-color);
+				position: absolute;
+				left: 20.83%;
+				top: 20.83%;
+				border-radius: 50%;
+			}
 		}
 	}
 }
