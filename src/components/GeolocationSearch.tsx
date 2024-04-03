@@ -31,7 +31,7 @@ export const GeolocationSearch = () => {
 			.then((data) => {
 				if (!(locations as Array<any>).includes(data.address.city)) {
 					dispatch(changeIsLoading(false));
-					setLocations((prev: Array<string>) => [data.address.city, ...prev]);
+					setLocations((prev: Array<string>) => [...prev, data.address.city]);
 				} else {
 					dispatch(changeLocationExist(true));
 				}

@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useLayoutEffect } from "react";
 import { useGetForecastByCityQuery } from "../../redux/api";
 import { locationsContext } from "../../App";
-import { ISerializedError } from "../../interfaces/api_interface";
 import { CityDate } from "./components/city_date/CityDate";
 import "./forecastPage.scss";
 import { CurrentConditionIcon } from "./components/current_condition_icon/CurrentConditionIcon";
@@ -13,19 +12,16 @@ import { useDispatch } from "react-redux";
 import { addForecast } from "../../redux/forecastsSlice";
 
 export const ForecastPage = ({ city }: { city: string }) => {
-	const { data, error, isError, isLoading, isFetching } = useGetForecastByCityQuery(city);
+	const { data, isError, isLoading, isFetching } = useGetForecastByCityQuery(city);
 	const { locations, setLocations } = useContext(locationsContext);
 	const dispatch = useDispatch();
 	useEffect(() => {
 		data && dispatch(addForecast(data));
 	}, [data]);
-	//Deleting a city from the array if error.status === 400
 	useLayoutEffect(() => {
 		if (isError) {
-			if ((error as ISerializedError).originalStatus === "400") {
-				const newLocations = locations.filter((el) => el !== city);
-				setLocations(newLocations);
-			}
+			const newLocations = locations.filter((el) => el !== city);
+			setLocations(newLocations);
 		}
 	}, [isError]);
 

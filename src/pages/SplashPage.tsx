@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { CitySearch } from "../components/CitySearch";
 import { GeolocationSearch } from "../components/GeolocationSearch";
 import "./splashPage.scss";
@@ -11,9 +11,7 @@ export const SplashPage = () => {
 	const { isError, isLoading, locationExist } = useSelector(
 		(store: RootStore) => store.geolocationSearchReducer
 	);
-	useEffect(() => {
-		console.log(isError, isLoading, locationExist);
-	}, [isError, isLoading, locationExist]);
+
 	return (
 		<div className="splash-page">
 			<div className="splash-page_background">
