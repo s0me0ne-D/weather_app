@@ -22,6 +22,14 @@ export const HourlyForecast = ({
 	const [isHoverColumnIndex, setIsHoverColumnIndex] = useState(99);
 	const [isCurrentTimeIndex, setIsCurrentTimeIndex] = useState(99);
 	const currentHourlyDate = date?.split("-").reverse().join("/");
+
+	const changeCurrentTimeIndex = (time: string[], index: number, timezone: string) => {
+		const localHour = getLocalTime(timezone).substring(0, 2);
+		if (time[0] === localHour && !isPopup) {
+			setIsCurrentTimeIndex(index);
+		}
+	};
+
 	const mouseOn = (index: number) => {
 		setIsHoverColumnIndex(index);
 	};
@@ -30,18 +38,13 @@ export const HourlyForecast = ({
 	};
 
 	useLayoutEffect(() => {
-		if (timezone) {
-			const newTime: Array<string> = [];
-			const localHour = getLocalTime(timezone).substring(0, 2);
-			hourly.forEach((el, index) => {
-				const time = el.datetime.split(":");
-				if (time[0] === localHour && !isPopup) {
-					setIsCurrentTimeIndex(index);
-				}
-				newTime.push(time.splice(0, 2).join(":"));
-			});
-			setDataTime(newTime);
-		}
+		const newTime: Array<string> = [];
+		hourly.forEach((el, index) => {
+			const time = el.datetime.split(":");
+			timezone && changeCurrentTimeIndex(time, index, timezone);
+			newTime.push(time.splice(0, 2).join(":"));
+		});
+		setDataTime(newTime);
 	}, []);
 
 	return (
