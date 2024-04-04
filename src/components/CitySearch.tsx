@@ -4,22 +4,23 @@ import "./citySearch.scss";
 export const CitySearch = () => {
 	const [value, setValue] = useState<string>("");
 	const { locations, setLocations } = useContext(locationsContext);
+	const handleOnKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+		if (
+			event.key === "Enter" &&
+			!(locations as Array<string>).includes(value) &&
+			value.length !== 0
+		) {
+			setLocations((prev: Array<string>) => [...prev, value]);
+			setValue("");
+		}
+	};
 	return (
 		<input
 			className="city-search"
 			type="text"
 			value={value}
 			onChange={(event) => setValue(event.target.value)}
-			onKeyDown={(event) => {
-				if (
-					event.key === "Enter" &&
-					!(locations as Array<string>).includes(value) &&
-					value.length !== 0
-				) {
-					setLocations((prev: Array<string>) => [...prev, value]);
-					setValue("");
-				}
-			}}
+			onKeyDown={(event) => handleOnKeyDown(event)}
 		/>
 	);
 };

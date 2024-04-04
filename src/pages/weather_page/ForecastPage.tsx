@@ -10,6 +10,13 @@ import { HourlyForecast } from "./components/HourlyForecast";
 import { WeeklyForecast } from "./components/weekly_forecast/WeeklyForecast";
 import { useDispatch } from "react-redux";
 import { addForecast } from "../../redux/forecastsSlice";
+import { changeIsError } from "../../redux/geolocationSearchSlice";
+import { IError } from "../../interfaces/geolocationSearch_interface";
+
+const errorLocation: IError = {
+	error: true,
+	message: "Ooooops, can`t find this city name.",
+};
 
 export const ForecastPage = ({ city }: { city: string }) => {
 	const { data, isError, isLoading, isFetching } = useGetForecastByCityQuery(city);
@@ -18,13 +25,17 @@ export const ForecastPage = ({ city }: { city: string }) => {
 	useEffect(() => {
 		data && dispatch(addForecast(data));
 	}, [data]);
+
 	useLayoutEffect(() => {
 		if (isError) {
-			const newLocations = locations.filter((el) => el !== city);
-			setLocations(newLocations);
+			dispatch(changeIsError(errorLocation));
+			deleteErrorCityName();
 		}
 	}, [isError]);
-
+	const deleteErrorCityName = () => {
+		const newLocations = locations.filter((el) => el !== city);
+		setLocations(newLocations);
+	};
 	return data ? (
 		<div className="forecast">
 			<CityDate adress={data.resolvedAddress} timezone={data.timezone} />
