@@ -15,6 +15,7 @@ export const Clock = ({ timeZone }: { timeZone: string }) => {
 	}, []);
 	useEffect(() => {
 		getTime();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 	useEffect(() => {
 		const intervalId = setInterval(() => {
@@ -22,6 +23,7 @@ export const Clock = ({ timeZone }: { timeZone: string }) => {
 		}, 60000);
 
 		return () => clearInterval(intervalId);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 	return (
 		<div className="city-date_date_clock">
