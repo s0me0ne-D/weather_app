@@ -31,11 +31,14 @@ export const ForecastPage = ({ city }: { city: string }) => {
 			dispatch(changeIsError(errorLocation));
 			deleteErrorCityName();
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [isError]);
+
 	const deleteErrorCityName = () => {
 		const newLocations = locations.filter((el) => el !== city);
 		setLocations(newLocations);
 	};
+
 	return data ? (
 		<div className="forecast">
 			<CityDate adress={data.resolvedAddress} timezone={data.timezone} />

@@ -45,6 +45,7 @@ export const HourlyForecast = ({
 			newTime.push(time.splice(0, 2).join(":"));
 		});
 		setDataTime(newTime);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	return (
