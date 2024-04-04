@@ -9,7 +9,6 @@ import { MapAddress } from "./map_components/MapAddress";
 export const Map = () => {
 	const forecasts = useSelector((state: RootStore) => state.forecastsReducer);
 	const [isActiveLocation, setIsActiveLocation] = useState<number | undefined>(undefined);
-	console.log(isActiveLocation);
 	return (
 		<div className="map">
 			<div className="map_container">

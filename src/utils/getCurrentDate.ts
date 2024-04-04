@@ -4,6 +4,6 @@ export const getCurrentDate = () => {
 	const month = date.getMonth() + 1;
 	const year = date.getFullYear();
 	const separator = "/";
-	const todayDate = `${day}${separator}${month < 10 ? `0${month}` : month}${separator}${year}`;
-	return todayDate;
+	const currentDate = `${day}${separator}${month < 10 ? `0${month}` : month}${separator}${year}`;
+	return currentDate;
 };

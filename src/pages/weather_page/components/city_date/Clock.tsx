@@ -12,6 +12,7 @@ export const Clock = ({ timeZone }: { timeZone: string }) => {
 			minutes: +localTime[1],
 			hours: +localTime[0],
 		});
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 	useEffect(() => {
 		getTime();
