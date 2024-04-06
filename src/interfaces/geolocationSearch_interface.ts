@@ -3,6 +3,7 @@ export interface IGeolocationSearch {
 	isLoading: boolean;
 	error: IError;
 	locationExist: boolean;
+	isSuccess: boolean;
 }
 export interface IError {
 	isError: boolean;

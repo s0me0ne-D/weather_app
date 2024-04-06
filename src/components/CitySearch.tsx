@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { locationsContext } from "../App";
 import "./citySearch.scss";
 import { useDispatch } from "react-redux";
-import { changeLocationExist } from "../redux/geolocationSearchSlice";
+import { changeLocation, changeLocationExist } from "../redux/geolocationSearchSlice";
 export const CitySearch = () => {
 	const [value, setValue] = useState<string>("");
 	const { locations, setLocations } = useContext(locationsContext);
@@ -11,6 +11,7 @@ export const CitySearch = () => {
 		if ((locations as Array<string>).includes(value)) {
 			dispatch(changeLocationExist(true));
 		} else if (value.length !== 0) {
+			dispatch(changeLocation(value));
 			setLocations((prev: Array<string>) => [...prev, value]);
 		}
 		setValue("");

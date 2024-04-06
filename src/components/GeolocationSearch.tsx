@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import {
 	changeIsError,
 	changeIsLoading,
+	changeLocation,
 	changeLocationExist,
 } from "../redux/geolocationSearchSlice";
 import { IError } from "../interfaces/geolocationSearch_interface";
@@ -39,9 +40,11 @@ export const GeolocationSearch = () => {
 		fetch(url)
 			.then((response) => response.json())
 			.then((data) => {
-				if (!(locations as Array<any>).includes(data.address.city)) {
+				const location = data.address.city;
+				if (!(locations as Array<any>).includes(location)) {
 					dispatch(changeIsLoading(false));
-					setLocations((prev: Array<string>) => [...prev, data.address.city]);
+					dispatch(changeLocation(location));
+					setLocations((prev: Array<string>) => [...prev, location]);
 				} else {
 					dispatch(changeLocationExist(true));
 				}
