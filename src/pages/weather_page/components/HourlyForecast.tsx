@@ -4,6 +4,7 @@ import { Hour, IIconType } from "../../../interfaces/weather_interface";
 import { WeatherIcon } from "./WeatherIcon";
 import { CloseIcon } from "../../../assets/icons/CloseIcon";
 import { getLocalTime } from "../../../utils/getLocalTime";
+import { useOutsideClick } from "../../../hooks/useOutsideClick";
 
 export const HourlyForecast = ({
 	hourly,
@@ -22,6 +23,7 @@ export const HourlyForecast = ({
 	const [isHoverColumnIndex, setIsHoverColumnIndex] = useState(99);
 	const [isCurrentTimeIndex, setIsCurrentTimeIndex] = useState(99);
 	const currentHourlyDate = date?.split("-").reverse().join("/");
+	const hourlyPopupRef = useOutsideClick(() => setIsPopup && setIsPopup(false));
 
 	const changeCurrentTimeIndex = (time: string[], index: number, timezone: string) => {
 		const localHour = getLocalTime(timezone).substring(0, 2);
@@ -49,7 +51,10 @@ export const HourlyForecast = ({
 	}, []);
 
 	return (
-		<div className={`hourly forecast-element ${isPopup ? "popup popup-hourly" : ""}`}>
+		<div
+			ref={isPopup ? hourlyPopupRef : undefined}
+			className={`hourly forecast-element ${isPopup ? "popup popup-hourly" : ""}`}
+		>
 			{isPopup && (
 				<button
 					className="popup-hourly_close-btn"

@@ -27,6 +27,7 @@ export const ForecastPage = ({ city }: { city: string }) => {
 	useEffect(() => {
 		data && dispatch(addForecast(data));
 		data && location === city && dispatch(changeIsSuccess(true));
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [data]);
 
 	useLayoutEffect(() => {

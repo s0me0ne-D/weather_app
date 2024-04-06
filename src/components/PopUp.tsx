@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootStore } from "../redux/store";
 import searchAnimation from "../assets/animations/locationSearchAnimation.json";
@@ -25,6 +25,7 @@ export const Popup = () => {
 		} else {
 			return JSON.parse(JSON.stringify(attentionAnimation));
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [error.isError, isLoading, locationExist, isSuccess]);
 
 	const dispatch = useDispatch();
