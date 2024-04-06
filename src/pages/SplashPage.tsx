@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 import { Popup } from "../components/Popup";
 
 export const SplashPage = () => {
-	const { isError, isLoading, locationExist } = useSelector(
+	const { error, isLoading, locationExist } = useSelector(
 		(store: RootStore) => store.geolocationSearchReducer
 	);
 
@@ -24,7 +24,7 @@ export const SplashPage = () => {
 				<span>get the weather forecast using</span>
 				<GeolocationSearch />
 			</div>
-			{isError.error || isLoading || locationExist ? <Popup /> : null}
+			{error.isError || isLoading || locationExist ? <Popup /> : null}
 		</div>
 	);
 };

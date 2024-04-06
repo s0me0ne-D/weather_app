@@ -2,8 +2,9 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { IError, IGeolocationSearch } from "../interfaces/geolocationSearch_interface";
 
 const initialState: IGeolocationSearch = {
+	location: "",
 	isLoading: false,
-	isError: { error: false, message: "" },
+	error: { isError: false, message: "" },
 	locationExist: false,
 };
 
@@ -16,7 +17,7 @@ export const geolocationSearch = createSlice({
 		},
 		changeIsError: (state, action: PayloadAction<IError>) => {
 			state.isLoading = false;
-			state.isError = action.payload;
+			state.error = action.payload;
 		},
 		changeLocationExist: (state, action: PayloadAction<boolean>) => {
 			state.isLoading = false;

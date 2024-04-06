@@ -8,7 +8,7 @@ import { changeIsError, changeLocationExist } from "../redux/geolocationSearchSl
 import "./popup.scss";
 
 export const Popup = () => {
-	const { isError, isLoading, locationExist } = useSelector(
+	const { error, isLoading, locationExist } = useSelector(
 		(store: RootStore) => store.geolocationSearchReducer
 	);
 	const animation = useMemo(() => {
@@ -17,12 +17,12 @@ export const Popup = () => {
 		} else {
 			return JSON.parse(JSON.stringify(attentionAnimation));
 		}
-	}, [isError.error, isLoading, locationExist]);
+	}, [error.isError, isLoading, locationExist]);
 
 	const dispatch = useDispatch();
 	const handlerConfirmation = () => {
-		if (isError.error) {
-			dispatch(changeIsError({ error: false, message: "" }));
+		if (error.isError) {
+			dispatch(changeIsError({ isError: false, message: "" }));
 		} else {
 			dispatch(changeLocationExist(false));
 		}
@@ -36,7 +36,7 @@ export const Popup = () => {
 		<div className="popup location-popup">
 			<div className="location-popup_description">
 				{View}
-				{isError.error && <span>{isError.message}</span>}
+				{error.isError && <span>{error.message}</span>}
 				{locationExist && <span>Location already exist</span>}
 			</div>
 			{!isLoading && (

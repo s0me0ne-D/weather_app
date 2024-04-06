@@ -1,9 +1,10 @@
 export interface IGeolocationSearch {
+	location: string;
 	isLoading: boolean;
-	isError: IError;
+	error: IError;
 	locationExist: boolean;
 }
 export interface IError {
-	error: boolean;
+	isError: boolean;
 	message: string;
 }

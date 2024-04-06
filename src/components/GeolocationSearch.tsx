@@ -8,6 +8,18 @@ import {
 	changeIsLoading,
 	changeLocationExist,
 } from "../redux/geolocationSearchSlice";
+import { IError } from "../interfaces/geolocationSearch_interface";
+
+const navigatorError: IError = {
+	isError: true,
+	message: "Geolocation not supported, please enter city name",
+};
+
+const cityNameError: IError = {
+	isError: true,
+	message: "Unable to retrieve your location, please enter city name",
+};
+
 export const GeolocationSearch = () => {
 	const { locations, setLocations } = useContext(locationsContext);
 	const dispatch = useDispatch();
@@ -16,9 +28,7 @@ export const GeolocationSearch = () => {
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(success, errorHandler);
 		} else {
-			dispatch(
-				changeIsError({ error: true, message: "Geolocation not supported, please enter city name" })
-			);
+			dispatch(changeIsError(navigatorError));
 		}
 	}
 
@@ -38,21 +48,11 @@ export const GeolocationSearch = () => {
 			})
 
 			.catch(() => {
-				dispatch(
-					changeIsError({
-						error: true,
-						message: "Unable to retrieve your location, please enter city name",
-					})
-				);
+				dispatch(changeIsError(cityNameError));
 			});
 	}
 	function errorHandler() {
-		dispatch(
-			changeIsError({
-				error: true,
-				message: "Unable to retrieve your location, please enter city name",
-			})
-		);
+		dispatch(changeIsError(cityNameError));
 	}
 
 	return (

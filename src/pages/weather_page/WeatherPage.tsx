@@ -16,7 +16,7 @@ export const WeatherPage = () => {
 	const [isMap, setIsMap] = useState<boolean>(false);
 	const [translate, setTranslate] = useState(0);
 	const [paginationCounter, setPaginationCounter] = useState(0);
-	const { isError, isLoading, locationExist } = useSelector(
+	const { error, isLoading, locationExist } = useSelector(
 		(store: RootStore) => store.geolocationSearchReducer
 	);
 
@@ -57,7 +57,7 @@ export const WeatherPage = () => {
 					))}
 				</div>
 			</main>
-			{isError.error || isLoading || locationExist ? <Popup /> : null}
+			{error.isError || isLoading || locationExist ? <Popup /> : null}
 		</div>
 	);
 };

@@ -14,7 +14,7 @@ import { changeIsError } from "../../redux/geolocationSearchSlice";
 import { IError } from "../../interfaces/geolocationSearch_interface";
 
 const errorLocation: IError = {
-	error: true,
+	isError: true,
 	message: "Ooooops, can`t find this city name.",
 };
 
