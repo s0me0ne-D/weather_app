@@ -17,7 +17,6 @@ export const WindInfo = ({
 		<div className="wind forecast-element">
 			<div className="wind_title">
 				<Windy />
-				<span>wind</span>
 			</div>
 			<div className="wind_description">
 				<div className="wind_info">

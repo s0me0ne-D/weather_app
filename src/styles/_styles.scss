@@ -39,6 +39,13 @@
 .forecast-element {
 	background-color: var(--var-secondary-color);
 	padding: 10px;
+	&_icon {
+		width: 100%;
+		svg {
+			fill: white;
+			opacity: 0.5;
+		}
+	}
 }
 body {
 	--aqua-gradient: linear-gradient(

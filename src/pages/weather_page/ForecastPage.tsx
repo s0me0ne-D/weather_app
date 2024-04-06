@@ -13,6 +13,7 @@ import { addForecast } from "../../redux/forecastsSlice";
 import { changeIsError, changeIsSuccess } from "../../redux/geolocationSearchSlice";
 import { IError } from "../../interfaces/geolocationSearch_interface";
 import { RootStore } from "../../redux/store";
+import { ThermometerIcon } from "../../assets/icons/ThermometerIcon";
 
 const errorLocation: IError = {
 	isError: true,
@@ -47,9 +48,14 @@ export const ForecastPage = ({ city }: { city: string }) => {
 		<div className="forecast">
 			<CityDate adress={data.resolvedAddress} timezone={data.timezone} />
 			<div className="forecast_temp forecast-element">
-				<div className="forecast_temp_block">
+				<div className="forecast-element_icon">
+					<ThermometerIcon />
+				</div>
+				<div className="forecast_temp_description">
+					{/* <div className="forecast_temp_description_block"> */}
 					{Math.floor(data.currentConditions.temp)}
 					<span className="forecast_temp_deg">°c</span>
+					{/* </div> */}
 				</div>
 			</div>
 			<CurrentConditionIcon condition={data.currentConditions.icon as IIconType} />

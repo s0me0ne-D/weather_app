@@ -7,16 +7,19 @@
 	grid-template-rows: repeat(3, 1fr);
 	gap: 5px;
 	&_temp {
-		display: grid;
-		place-items: center;
+		display: flex;
+		flex-direction: column;
 		grid-row: 1;
 		grid-column: 3;
-		font-size: max(30px, min(7vw, 6rem));
-		&_block {
+		&_description {
 			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 100%;
+			font-size: max(30px, min(7vw, 6rem));
 		}
 		&_deg {
-			min-height: 100%;
+			height: max(30px, min(7vw, 6rem));
 			display: block;
 			font-size: max(15px, min(4vw, 3rem));
 			opacity: 0.5;
