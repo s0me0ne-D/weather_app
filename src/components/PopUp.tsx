@@ -13,7 +13,19 @@ import {
 } from "../redux/geolocationSearchSlice";
 import "./popup.scss";
 
-export const Popup = () => {
+const messages = {
+	locationExist: "Location already exist.",
+	isSuccess: "was added.",
+	maxLocations: "Sorry, you can add only 5 locations",
+};
+
+export const Popup = ({
+	isMaxLocations,
+	closePopup,
+}: {
+	isMaxLocations?: boolean;
+	closePopup?: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
 	const { error, isLoading, locationExist, isSuccess, location } = useSelector(
 		(store: RootStore) => store.geolocationSearchReducer
 	);
@@ -35,6 +47,8 @@ export const Popup = () => {
 		} else if (isSuccess) {
 			dispatch(changeIsSuccess(false));
 			dispatch(changeLocation(""));
+		} else if (closePopup) {
+			closePopup(false);
 		} else {
 			dispatch(changeLocationExist(false));
 		}
@@ -51,9 +65,13 @@ export const Popup = () => {
 				{error.isError ? (
 					<span>{error.message}</span>
 				) : locationExist ? (
-					<span>Location already exist</span>
+					<span>{messages.locationExist}</span>
 				) : isSuccess ? (
-					<span>{location} was added.</span>
+					<span>
+						{location} {messages.isSuccess}
+					</span>
+				) : isMaxLocations ? (
+					<span>{messages.maxLocations}</span>
 				) : null}
 			</div>
 			{!isLoading && (

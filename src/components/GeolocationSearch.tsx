@@ -21,15 +21,23 @@ const cityNameError: IError = {
 	message: "Unable to retrieve your location, please enter city name",
 };
 
-export const GeolocationSearch = () => {
+export const GeolocationSearch = ({
+	handleMaxLocations,
+}: {
+	handleMaxLocations?: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
 	const { locations, setLocations } = useContext(locationsContext);
 	const dispatch = useDispatch();
 	function handleLocationClick() {
-		dispatch(changeIsLoading(true));
-		if (navigator.geolocation) {
-			navigator.geolocation.getCurrentPosition(success, errorHandler);
+		if (locations.length === 5 && handleMaxLocations) {
+			handleMaxLocations(true);
 		} else {
-			dispatch(changeIsError(navigatorError));
+			dispatch(changeIsLoading(true));
+			if (navigator.geolocation) {
+				navigator.geolocation.getCurrentPosition(success, errorHandler);
+			} else {
+				dispatch(changeIsError(navigatorError));
+			}
 		}
 	}
 
