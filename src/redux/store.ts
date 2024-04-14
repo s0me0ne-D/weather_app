@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { weatherApi } from "./api";
-import { geolocationSearchReducer } from "./geolocationSearchSlice";
+import { popupReducer } from "./popupSlice";
 export const store = configureStore({
 	reducer: {
 		[weatherApi.reducerPath]: weatherApi.reducer,
-		geolocationSearchReducer,
+		popupReducer,
 	},
 	middleware: (gDM) => gDM().concat(weatherApi.middleware),
 });

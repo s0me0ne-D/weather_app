@@ -2,18 +2,15 @@ import React, { useContext, useState } from "react";
 import { locationsContext } from "../App";
 import "./citySearch.scss";
 import { useDispatch } from "react-redux";
-import { changeLocation, changeLocationExist } from "../redux/geolocationSearchSlice";
-export const CitySearch = ({
-	handleMaxLocations,
-}: {
-	handleMaxLocations?: React.Dispatch<React.SetStateAction<boolean>>;
-}) => {
+import { changeIsError, changeLocation, changeLocationExist } from "../redux/popupSlice";
+import { maxLocationsError } from "./GeolocationSearch";
+export const CitySearch = () => {
 	const [value, setValue] = useState<string>("");
 	const { locations, setLocations } = useContext(locationsContext);
 	const dispatch = useDispatch();
-	const handleOnKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-		if (locations.length === 5 && handleMaxLocations) {
-			handleMaxLocations(true);
+	const handleOnKeyDown = () => {
+		if (locations.length === 5) {
+			dispatch(changeIsError(maxLocationsError));
 		} else if ((locations as Array<string>).includes(value)) {
 			dispatch(changeLocationExist(true));
 		} else if (value.length !== 0) {
@@ -28,7 +25,7 @@ export const CitySearch = ({
 			type="text"
 			value={value}
 			onChange={(event) => setValue(event.target.value)}
-			onKeyDown={(event) => event.key === "Enter" && handleOnKeyDown(event)}
+			onKeyDown={(event) => event.key === "Enter" && handleOnKeyDown()}
 		/>
 	);
 };

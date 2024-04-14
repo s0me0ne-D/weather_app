@@ -9,7 +9,7 @@ const initialState: IGeolocationSearch = {
 	isSuccess: false,
 };
 
-export const geolocationSearch = createSlice({
+export const popup = createSlice({
 	name: "geolocationSearch",
 	initialState,
 	reducers: {
@@ -32,11 +32,11 @@ export const geolocationSearch = createSlice({
 		},
 	},
 });
-export const geolocationSearchReducer = geolocationSearch.reducer;
+export const popupReducer = popup.reducer;
 export const {
 	changeLocation,
 	changeIsError,
 	changeIsLoading,
 	changeLocationExist,
 	changeIsSuccess,
-} = geolocationSearch.actions;
+} = popup.actions;

@@ -9,7 +9,7 @@ import { WindInfo } from "./components/wind_info/WindInfo";
 import { HourlyForecast } from "./components/HourlyForecast";
 import { WeeklyForecast } from "./components/weekly_forecast/WeeklyForecast";
 import { useDispatch, useSelector } from "react-redux";
-import { changeIsError, changeIsSuccess } from "../../redux/geolocationSearchSlice";
+import { changeIsError, changeIsSuccess } from "../../redux/popupSlice";
 import { IError } from "../../interfaces/geolocationSearch_interface";
 import { RootStore } from "../../redux/store";
 import { ThermometerIcon } from "../../assets/icons/ThermometerIcon";
@@ -22,7 +22,7 @@ const errorLocation: IError = {
 export const ForecastPage = ({ city }: { city: string }) => {
 	const { data, isError, isLoading, isFetching } = useGetForecastByCityQuery(city);
 	const { locations, setLocations } = useContext(locationsContext);
-	const { location } = useSelector((store: RootStore) => store.geolocationSearchReducer);
+	const { location } = useSelector((store: RootStore) => store.popupReducer);
 	const dispatch = useDispatch();
 	useEffect(() => {
 		data && location === city && dispatch(changeIsSuccess(true));

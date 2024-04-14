@@ -8,29 +8,30 @@ import {
 	changeIsLoading,
 	changeLocation,
 	changeLocationExist,
-} from "../redux/geolocationSearchSlice";
+} from "../redux/popupSlice";
 import { IError } from "../interfaces/geolocationSearch_interface";
+import { ErrorMessages } from "../interfaces/errors_enums";
 
 const navigatorError: IError = {
 	isError: true,
-	message: "Geolocation not supported, please enter city name",
+	message: ErrorMessages.Navigator,
 };
 
 const cityNameError: IError = {
 	isError: true,
-	message: "Unable to retrieve your location, please enter city name",
+	message: ErrorMessages.CityName,
+};
+export const maxLocationsError: IError = {
+	isError: true,
+	message: ErrorMessages.MaxLocations,
 };
 
-export const GeolocationSearch = ({
-	handleMaxLocations,
-}: {
-	handleMaxLocations?: React.Dispatch<React.SetStateAction<boolean>>;
-}) => {
+export const GeolocationSearch = () => {
 	const { locations, setLocations } = useContext(locationsContext);
 	const dispatch = useDispatch();
 	function handleLocationClick() {
-		if (locations.length === 5 && handleMaxLocations) {
-			handleMaxLocations(true);
+		if (locations.length === 5) {
+			dispatch(changeIsError(maxLocationsError));
 		} else {
 			dispatch(changeIsLoading(true));
 			if (navigator.geolocation) {

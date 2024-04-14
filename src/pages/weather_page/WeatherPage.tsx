@@ -10,24 +10,20 @@ import { Map } from "./components/map/Map";
 import { useSelector } from "react-redux";
 import { RootStore } from "../../redux/store";
 import { Popup } from "../../components/Popup";
+import { Header } from "./components/header/Header";
 
 export const WeatherPage = () => {
 	const { locations } = useContext(locationsContext);
 	const [isMap, setIsMap] = useState<boolean>(false);
 	const [translate, setTranslate] = useState(0);
 	const [paginationCounter, setPaginationCounter] = useState(0);
-	const [isMaxLocations, setIsMaxLocations] = useState<boolean>(false);
 	const { error, isLoading, locationExist, isSuccess } = useSelector(
-		(store: RootStore) => store.geolocationSearchReducer
+		(store: RootStore) => store.popupReducer
 	);
 
 	return (
 		<div className="weather">
-			<header className="weather_header">
-				<CitySearch handleMaxLocations={setIsMaxLocations} />
-				<GeolocationSearch handleMaxLocations={setIsMaxLocations} />
-				<MapBtn setIsMap={setIsMap} />
-			</header>
+			<Header onClick={setIsMap} />
 			<main className="main">
 				<ArrowBtn
 					direction="left"
@@ -59,7 +55,6 @@ export const WeatherPage = () => {
 				</div>
 			</main>
 			{error.isError || isLoading || locationExist || isSuccess ? <Popup /> : null}
-			{isMaxLocations && <Popup isMaxLocations={isMaxLocations} closePopup={setIsMaxLocations} />}
 		</div>
 	);
 };

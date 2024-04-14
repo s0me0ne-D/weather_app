@@ -8,9 +8,7 @@ import { useSelector } from "react-redux";
 import { Popup } from "../components/Popup";
 
 export const SplashPage = () => {
-	const { error, isLoading, locationExist } = useSelector(
-		(store: RootStore) => store.geolocationSearchReducer
-	);
+	const { error, isLoading, locationExist } = useSelector((store: RootStore) => store.popupReducer);
 
 	return (
 		<div className="splash-page">
