@@ -9,7 +9,6 @@ import { WindInfo } from "./components/wind_info/WindInfo";
 import { HourlyForecast } from "./components/HourlyForecast";
 import { WeeklyForecast } from "./components/weekly_forecast/WeeklyForecast";
 import { useDispatch, useSelector } from "react-redux";
-import { addForecast } from "../../redux/forecastsSlice";
 import { changeIsError, changeIsSuccess } from "../../redux/geolocationSearchSlice";
 import { IError } from "../../interfaces/geolocationSearch_interface";
 import { RootStore } from "../../redux/store";
@@ -26,7 +25,6 @@ export const ForecastPage = ({ city }: { city: string }) => {
 	const { location } = useSelector((store: RootStore) => store.geolocationSearchReducer);
 	const dispatch = useDispatch();
 	useEffect(() => {
-		data && dispatch(addForecast(data));
 		data && location === city && dispatch(changeIsSuccess(true));
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [data]);
@@ -52,10 +50,8 @@ export const ForecastPage = ({ city }: { city: string }) => {
 					<ThermometerIcon />
 				</div>
 				<div className="forecast_temp_description">
-					{/* <div className="forecast_temp_description_block"> */}
 					{Math.floor(data.currentConditions.temp)}
 					<span className="forecast_temp_deg">°c</span>
-					{/* </div> */}
 				</div>
 			</div>
 			<CurrentConditionIcon condition={data.currentConditions.icon as IIconType} />

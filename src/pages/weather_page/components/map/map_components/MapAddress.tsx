@@ -3,6 +3,7 @@ import { IIconType, IWeather } from "../../../../../interfaces/weather_interface
 import { addressHandler } from "../../../../../utils/addressHandler";
 import "./mapAdress.scss";
 import { WeatherIcon } from "../../WeatherIcon";
+import { useGetForecastByCityQuery } from "../../../../../redux/api";
 
 export const MapAddress = ({
 	location,
@@ -10,13 +11,14 @@ export const MapAddress = ({
 	setIsActiveLocation,
 	isActiveLocation,
 }: {
-	location: IWeather;
+	location: string;
 	index: number;
 	setIsActiveLocation: React.Dispatch<React.SetStateAction<number | undefined>>;
 	isActiveLocation: number | undefined;
 }) => {
-	const { cityName, country } = addressHandler(location.resolvedAddress);
-	return (
+	const { data } = useGetForecastByCityQuery(location);
+	const { cityName, country } = addressHandler(data?.resolvedAddress ?? "");
+	return data ? (
 		<div className={`map-address ${isActiveLocation === index ? "isActiveAddress" : ""}`}>
 			<div className="map-address_description">
 				<div className="map-address_description_location-address">
@@ -24,11 +26,11 @@ export const MapAddress = ({
 				</div>
 				<div className="map-address_description_forecast">
 					<div className="map-address_description_forecast_temp">
-						{Math.floor(location.currentConditions.temp)}
+						{Math.floor(data?.currentConditions.temp)}
 						<span>°C</span>
 					</div>
 					<div className="map-address_description_forecast_icon">
-						<WeatherIcon condition={location.currentConditions.icon as IIconType} />
+						<WeatherIcon condition={data.currentConditions.icon as IIconType} />
 					</div>
 				</div>
 			</div>
@@ -39,5 +41,5 @@ export const MapAddress = ({
 				}}
 			></div>
 		</div>
-	);
+	) : null;
 };

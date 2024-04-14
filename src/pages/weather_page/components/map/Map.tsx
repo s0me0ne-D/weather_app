@@ -1,21 +1,20 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./map.scss";
 import { WorldMap } from "../../../../assets/icons/WorldMap";
-import { useSelector } from "react-redux";
-import { RootStore } from "../../../../redux/store";
 import { MapLocation } from "./map_components/MapLocation";
 import { MapAddress } from "./map_components/MapAddress";
+import { locationsContext } from "../../../../App";
 
 export const Map = () => {
-	const forecasts = useSelector((state: RootStore) => state.forecastsReducer);
 	const [isActiveLocation, setIsActiveLocation] = useState<number | undefined>(undefined);
+	const { locations } = useContext(locationsContext);
 	return (
 		<div className="map">
 			<div className="map_container">
 				<WorldMap />
-				{forecasts.map((location, index) => (
+				{locations.map((location, index) => (
 					<MapLocation
-						key={location.address}
+						key={location}
 						location={location}
 						index={index}
 						isActiveLocation={isActiveLocation}
@@ -24,9 +23,9 @@ export const Map = () => {
 				))}
 			</div>
 			<div className="map_location">
-				{forecasts.map((location, index) => (
+				{locations.map((location, index) => (
 					<MapAddress
-						key={location.address}
+						key={location}
 						location={location}
 						index={index}
 						isActiveLocation={isActiveLocation}
