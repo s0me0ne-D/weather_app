@@ -7,17 +7,19 @@ const handleDate = (date: string) => {
 	return date.split("-").splice(1, 2).reverse().join("/");
 };
 
+interface DayForecastProps {
+	forecast: Day;
+	index: number;
+	setPopupForecastIndex: React.Dispatch<React.SetStateAction<number>>;
+	setIsHourslyForecastForDate: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
 export const DayForecast = ({
 	forecast,
 	index,
 	setPopupForecastIndex,
 	setIsHourslyForecastForDate,
-}: {
-	forecast: Day;
-	index: number;
-	setPopupForecastIndex: React.Dispatch<React.SetStateAction<number>>;
-	setIsHourslyForecastForDate: React.Dispatch<React.SetStateAction<boolean>>;
-}) => {
+}: DayForecastProps) => {
 	const date = handleDate(forecast.datetime);
 	const currentCondition = conditionHandler(forecast.icon as IIconType);
 	const handleOnClick = () => {

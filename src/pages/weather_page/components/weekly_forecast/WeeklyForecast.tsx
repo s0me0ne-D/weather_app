@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./weeklyForecast.scss";
 import { Day } from "../../../../interfaces/weather_interface";
 import { DayForecast } from "./DayForecast";
-import { HourlyForecast } from "../HourlyForecast";
+import { HourlyForecast } from "../hourlyFocrecast/HourlyForecast";
 
 export const WeeklyForecast = ({ weekly }: { weekly: Array<Day> }) => {
 	const [isHourlyForecastForDate, setIsHourslyForecastForDate] = useState<boolean>(false);

@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { IWeather } from "../../../../../interfaces/weather_interface";
 import "./mapLocation.scss";
 import { useGetForecastByCityQuery } from "../../../../../redux/api";
+
+interface MapLocationProps {
+	location: string;
+	index: number;
+	setIsActiveLocation: React.Dispatch<React.SetStateAction<number | undefined>>;
+	isActiveLocation: number | undefined;
+}
 
 export const MapLocation = ({
 	location,
 	index,
 	setIsActiveLocation,
 	isActiveLocation,
-}: {
-	location: string;
-	index: number;
-	setIsActiveLocation: React.Dispatch<React.SetStateAction<number | undefined>>;
-	isActiveLocation: number | undefined;
-}) => {
+}: MapLocationProps) => {
 	const { data } = useGetForecastByCityQuery(location);
-	console.log(data);
 	const [latitide, setLatitude] = useState(0);
 	const [longitude, setLongitude] = useState(0);
 	useEffect(() => {

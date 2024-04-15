@@ -5,32 +5,26 @@ import { ArrowBackIcon } from "../../../../assets/icons/ArrowBackIcon";
 import { locationsContext } from "../../../../App";
 
 type Direction = "left" | "right";
-const BUTTONS_WIDTH = 110;
-
-export const ArrowBtn = ({
-	direction,
-	setTranslate,
-	counter,
-	setCounter,
-}: {
+interface ArrowBtnProps {
 	direction: Direction;
-	setTranslate: React.Dispatch<React.SetStateAction<number>>;
+	onClick: (translateValue: number, paginationValue: number) => void;
 	counter: number;
-	setCounter: React.Dispatch<React.SetStateAction<number>>;
-}) => {
+}
+
+const SUM_OF_BUTTONS_WIDTH = 110;
+
+export const ArrowBtn = ({ direction, onClick, counter }: ArrowBtnProps) => {
 	const { locations } = useContext(locationsContext);
 	const windowWidth = window.innerWidth;
-	const onClick = () => {
+	const handleOnClick = () => {
 		if (counter < locations.length - 1 && direction === "right") {
-			setTranslate((prev) => prev - windowWidth + BUTTONS_WIDTH);
-			setCounter((prev) => prev + 1);
+			onClick(-windowWidth + SUM_OF_BUTTONS_WIDTH, 1);
 		} else if (counter > 0 && direction === "left") {
-			setTranslate((prev) => prev + windowWidth - BUTTONS_WIDTH);
-			setCounter((prev) => prev - 1);
+			onClick(windowWidth - SUM_OF_BUTTONS_WIDTH, -1);
 		}
 	};
 	return (
-		<button className={`arrow-btn ${direction}`} onClick={() => onClick()}>
+		<button className={`arrow-btn ${direction}`} onClick={() => handleOnClick()}>
 			{direction === "right" ? <ArrowForwardIcon /> : <ArrowBackIcon />}
 		</button>
 	);

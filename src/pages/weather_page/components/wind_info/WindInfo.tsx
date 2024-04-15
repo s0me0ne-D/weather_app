@@ -4,15 +4,13 @@ import "./windInfo.scss";
 import { CompassArrow } from "../../../../assets/icons/CompassArrow";
 import { Windy } from "../../../../assets/icons/forecast_icons/Windy";
 
-export const WindInfo = ({
-	deg,
-	windspeed,
-	windgust,
-}: {
+interface WindInfoProps {
 	deg: number;
 	windspeed: number;
 	windgust: number;
-}) => {
+}
+
+export const WindInfo = ({ deg, windspeed, windgust }: WindInfoProps) => {
 	return (
 		<div className="wind forecast-element">
 			<div className="wind_title">

@@ -6,7 +6,7 @@ import "./forecastPage.scss";
 import { CurrentConditionIcon } from "./components/current_condition_icon/CurrentConditionIcon";
 import { IIconType } from "../../interfaces/weather_interface";
 import { WindInfo } from "./components/wind_info/WindInfo";
-import { HourlyForecast } from "./components/HourlyForecast";
+import { HourlyForecast } from "./components/hourlyFocrecast/HourlyForecast";
 import { WeeklyForecast } from "./components/weekly_forecast/WeeklyForecast";
 import { useDispatch, useSelector } from "react-redux";
 import { changeIsError, changeIsSuccess } from "../../redux/popupSlice";

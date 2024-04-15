@@ -5,17 +5,19 @@ import "./mapAdress.scss";
 import { WeatherIcon } from "../../WeatherIcon";
 import { useGetForecastByCityQuery } from "../../../../../redux/api";
 
+interface MapAddressProps {
+	location: string;
+	index: number;
+	setIsActiveLocation: React.Dispatch<React.SetStateAction<number | undefined>>;
+	isActiveLocation: number | undefined;
+}
+
 export const MapAddress = ({
 	location,
 	index,
 	setIsActiveLocation,
 	isActiveLocation,
-}: {
-	location: string;
-	index: number;
-	setIsActiveLocation: React.Dispatch<React.SetStateAction<number | undefined>>;
-	isActiveLocation: number | undefined;
-}) => {
+}: MapAddressProps) => {
 	const { data } = useGetForecastByCityQuery(location);
 	const { cityName, country } = addressHandler(data?.resolvedAddress ?? "");
 	return data ? (
