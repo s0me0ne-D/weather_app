@@ -26,11 +26,7 @@ export const MapLocation = ({
 	}, [data]);
 
 	return (
-		<div
-			className={`location ${isActiveLocation === index ? "isActiveLocation" : ""}`}
-			style={{ top: `${latitide}%`, left: `${longitude}%` }}
-			title={data?.resolvedAddress}
-		>
+		<div className={`location ${isActiveLocation === index ? "isActiveLocation" : ""}`}>
 			<div
 				className="location_marker"
 				onClick={() => {
