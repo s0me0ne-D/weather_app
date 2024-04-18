@@ -8,9 +8,11 @@ export const Locations = () => {
 
 	return (
 		<div className="locations">
-			{locations?.map((cityName) => (
-				<Location location={cityName} key={cityName} />
-			))}
+			<div className="locations_container">
+				{locations?.map((cityName, index) => (
+					<Location location={cityName} key={cityName} index={index} />
+				))}
+			</div>
 		</div>
 	);
 };

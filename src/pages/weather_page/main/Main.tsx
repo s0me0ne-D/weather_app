@@ -16,6 +16,7 @@ export const Main = ({ isMap }: { isMap: boolean }) => {
 
 	return (
 		<main className="main">
+			{isMap && <MapPage />}
 			<ArrowBtn direction="left" onClick={onClick} counter={paginationCounter} />
 			<div className="weather_container">
 				<div className="weather_forecast" style={{ transform: `translateX(${translate}px)` }}>
@@ -25,7 +26,7 @@ export const Main = ({ isMap }: { isMap: boolean }) => {
 				</div>
 			</div>
 			<ArrowBtn direction="right" onClick={onClick} counter={paginationCounter} />
-			{isMap && <MapPage currentLocationIndex={paginationCounter} />}
+
 			<div className="pagination-dots">
 				{locations.map((location, index) => (
 					<div
