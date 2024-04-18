@@ -21,7 +21,7 @@ export const Map = ({ currentLocationIndex }: { currentLocationIndex: number }) 
 			/>
 			<MarkerClusterGroup>
 				{locations.map((location) => (
-					<LocationMarker location={location} />
+					<LocationMarker location={location} key={location} />
 				))}
 			</MarkerClusterGroup>
 		</MapContainer>

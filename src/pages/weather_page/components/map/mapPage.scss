@@ -1,9 +1,12 @@
-@import "../../../../styles/animations";
+@import "../../../../styles/animations", "../../../../styles/themes";
 .map-component {
 	width: 100%;
-	height: calc(100% - 70px);
+	height: calc(100svh - 70px);
+	display: grid;
+	grid-template-rows: auto 1fr;
 	position: absolute;
 	z-index: 999;
 	top: 70px;
 	left: 0;
+	background-color: var(--var-primary-color);
 }

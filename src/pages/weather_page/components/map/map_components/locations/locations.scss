@@ -1,0 +1,27 @@
+@import "../../../../../../styles/themes";
+
+.locations {
+	display: flex;
+	gap: 5px;
+	margin-bottom: 5px;
+	&_location {
+		min-width: 150px;
+		padding: 5px 20px;
+		background-color: var(--var-secondary-color);
+		font-size: max(15px, min(2vw, 1.5rem));
+		color: white;
+		border-radius: 3px;
+		&_description {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 10px;
+			&_temp {
+				font-size: 14px;
+				span {
+					opacity: 0.5;
+				}
+			}
+		}
+	}
+}
