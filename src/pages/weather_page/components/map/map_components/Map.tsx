@@ -18,7 +18,7 @@ export const Map = () => {
 	const { data } = useGetForecastByCityQuery(locations[index]);
 
 	return data ? (
-		<MapContainer center={[data?.latitude, data?.longitude]} zoom={7} minZoom={3}>
+		<MapContainer center={[data?.latitude, data?.longitude]} zoom={10} minZoom={3}>
 			<TileLayer
 				attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 				url={DAY_MAP}

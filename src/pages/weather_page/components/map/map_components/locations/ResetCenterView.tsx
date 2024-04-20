@@ -12,7 +12,7 @@ export const ResetCenterView = () => {
 
 	const map = useMap();
 	useEffect(() => {
-		data && map.flyTo({ lat: data.latitude, lng: data.longitude });
+		data && map.flyTo({ lat: data.latitude, lng: data.longitude }, 10);
 	}, [data, map]);
 
 	return null;
