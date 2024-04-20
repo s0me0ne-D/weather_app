@@ -1,18 +1,18 @@
-import React, { useContext, useEffect, useLayoutEffect } from "react";
-import { useGetForecastByCityQuery } from "../../redux/api";
-import { locationsContext } from "../../App";
-import { CityDate } from "./components/city_date/CityDate";
+import React, { useContext, useEffect, useLayoutEffect, useState } from "react";
+import { useGetForecastByCityQuery } from "../../../redux/api";
+import { locationsContext } from "../../../App";
+import { CityDate } from "../components/city_date/CityDate";
 import "./forecastPage.scss";
-import { CurrentConditionIcon } from "./components/current_condition_icon/CurrentConditionIcon";
-import { IIconType } from "../../interfaces/weather_interface";
-import { WindInfo } from "./components/wind_info/WindInfo";
-import { HourlyForecast } from "./components/hourlyFocrecast/HourlyForecast";
-import { WeeklyForecast } from "./components/weekly_forecast/WeeklyForecast";
+import { CurrentConditionIcon } from "../components/current_condition_icon/CurrentConditionIcon";
+import { IIconType } from "../../../interfaces/weather_interface";
+import { WindInfo } from "../components/wind_info/WindInfo";
+import { HourlyForecast } from "../components/hourlyFocrecast/HourlyForecast";
+import { WeeklyForecast } from "../components/weekly_forecast/WeeklyForecast";
 import { useDispatch, useSelector } from "react-redux";
-import { changeIsError, changeIsSuccess } from "../../redux/popupSlice";
-import { IError } from "../../interfaces/geolocationSearch_interface";
-import { RootStore } from "../../redux/store";
-import { ThermometerIcon } from "../../assets/icons/ThermometerIcon";
+import { changeIsError, changeIsSuccess } from "../../../redux/popupSlice";
+import { IError } from "../../../interfaces/geolocationSearch_interface";
+import { RootStore } from "../../../redux/store";
+import { ThermometerIcon } from "../../../assets/icons/ThermometerIcon";
 
 const errorLocation: IError = {
 	isError: true,
@@ -22,10 +22,20 @@ const errorLocation: IError = {
 export const ForecastPage = ({ city }: { city: string }) => {
 	const { data, isError, isLoading, isFetching } = useGetForecastByCityQuery(city);
 	const { locations, setLocations } = useContext(locationsContext);
-	const { location } = useSelector((store: RootStore) => store.popupReducer);
+	const [translate, setTranslate] = useState<number | null>(null);
+	const { popupReducer, activeLocationIndexReducer } = useSelector((store: RootStore) => store);
+
 	const dispatch = useDispatch();
+
 	useEffect(() => {
-		data && location === city && dispatch(changeIsSuccess(true));
+		const SUM_OF_BUTTONS_WIDTH = 110;
+		const windowWidth = window.innerWidth;
+
+		setTranslate((windowWidth - SUM_OF_BUTTONS_WIDTH) * -activeLocationIndexReducer.index);
+	}, [activeLocationIndexReducer.index]);
+
+	useEffect(() => {
+		data && popupReducer.location === city && dispatch(changeIsSuccess(true));
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [data]);
 
@@ -43,7 +53,7 @@ export const ForecastPage = ({ city }: { city: string }) => {
 	};
 
 	return data ? (
-		<div className="forecast">
+		<div className="forecast" style={{ transform: `translateX(${translate}px)` }}>
 			<CityDate adress={data.resolvedAddress} timezone={data.timezone} />
 			<div className="forecast_temp forecast-element">
 				<div className="forecast-element_icon">

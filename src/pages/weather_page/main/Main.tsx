@@ -1,36 +1,34 @@
 import React, { useContext, useState } from "react";
 import { ArrowBtn } from "../components/buttons/ArrowBtn";
 import { locationsContext } from "../../../App";
-import { ForecastPage } from "../ForecastPage";
+import { ForecastPage } from "./ForecastPage";
 import { MapPage } from "../components/map/MapPage";
+import { useSelector } from "react-redux";
+import { RootStore } from "../../../redux/store";
 
 export const Main = ({ isMap }: { isMap: boolean }) => {
 	const { locations } = useContext(locationsContext);
-	const [translate, setTranslate] = useState(0);
-	const [paginationCounter, setPaginationCounter] = useState(0);
-
-	const onClick = (translateValue: number, paginationValue: number) => {
-		setTranslate((prev) => prev + translateValue);
-		setPaginationCounter((prev) => prev + paginationValue);
-	};
+	const { index: activeIndex } = useSelector(
+		(store: RootStore) => store.activeLocationIndexReducer
+	);
 
 	return (
 		<main className="main">
 			{isMap && <MapPage />}
-			<ArrowBtn direction="left" onClick={onClick} counter={paginationCounter} />
+			<ArrowBtn direction="left" />
 			<div className="weather_container">
-				<div className="weather_forecast" style={{ transform: `translateX(${translate}px)` }}>
+				<div className="weather_forecast">
 					{locations.map((city, index) => (
 						<ForecastPage city={city} key={index} />
 					))}
 				</div>
 			</div>
-			<ArrowBtn direction="right" onClick={onClick} counter={paginationCounter} />
+			<ArrowBtn direction="right" />
 
 			<div className="pagination-dots">
 				{locations.map((location, index) => (
 					<div
-						className={`pagination-dots_dot ${index === paginationCounter ? "active-dot" : ""}`}
+						className={`pagination-dots_dot ${index === activeIndex ? "active-dot" : ""}`}
 						key={location}
 					></div>
 				))}

@@ -6,6 +6,8 @@
 	grid-template-columns: repeat(4, 1fr);
 	grid-template-rows: repeat(3, 1fr);
 	gap: 5px;
+	transition: 0.2s ease-in;
+
 	&_temp {
 		display: flex;
 		flex-direction: column;

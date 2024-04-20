@@ -3,24 +3,26 @@ import { ArrowForwardIcon } from "../../../../assets/icons/ArrowForwardIcon";
 import "./arrowBtn.scss";
 import { ArrowBackIcon } from "../../../../assets/icons/ArrowBackIcon";
 import { locationsContext } from "../../../../App";
+import { useDispatch, useSelector } from "react-redux";
+import { RootStore } from "../../../../redux/store";
+import { changeActiveLocationIndex } from "../../../../redux/activeLocationIndexSlice";
 
 type Direction = "left" | "right";
 interface ArrowBtnProps {
 	direction: Direction;
-	onClick: (translateValue: number, paginationValue: number) => void;
-	counter: number;
 }
 
-const SUM_OF_BUTTONS_WIDTH = 110;
-
-export const ArrowBtn = ({ direction, onClick, counter }: ArrowBtnProps) => {
+export const ArrowBtn = ({ direction }: ArrowBtnProps) => {
 	const { locations } = useContext(locationsContext);
-	const windowWidth = window.innerWidth;
+	const { index } = useSelector((store: RootStore) => store.activeLocationIndexReducer);
+
+	const dispatch = useDispatch();
+
 	const handleOnClick = () => {
-		if (counter < locations.length - 1 && direction === "right") {
-			onClick(-windowWidth + SUM_OF_BUTTONS_WIDTH, 1);
-		} else if (counter > 0 && direction === "left") {
-			onClick(windowWidth - SUM_OF_BUTTONS_WIDTH, -1);
+		if (index < locations.length - 1 && direction === "right") {
+			dispatch(changeActiveLocationIndex(index + 1));
+		} else if (index > 0 && direction === "left") {
+			dispatch(changeActiveLocationIndex(index - 1));
 		}
 	};
 	return (
