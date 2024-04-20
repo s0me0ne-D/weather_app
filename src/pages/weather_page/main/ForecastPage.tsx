@@ -14,6 +14,7 @@ import { IError } from "../../../interfaces/geolocationSearch_interface";
 import { RootStore } from "../../../redux/store";
 import { ThermometerIcon } from "../../../assets/icons/ThermometerIcon";
 import { Box, CircularProgress } from "@mui/material";
+import { useWindowWidth } from "../../../hooks/useWindowWidth";
 
 const errorLocation: IError = {
 	isError: true,
@@ -38,14 +39,15 @@ export const ForecastPage = ({ city }: { city: string }) => {
 	const { index } = useSelector((store: RootStore) => store.activeLocationIndexReducer);
 	const { location } = useSelector((store: RootStore) => store.popupReducer);
 
+	const windowWidth = useWindowWidth();
+
 	const dispatch = useDispatch();
 
 	useEffect(() => {
 		const SUM_OF_BUTTONS_WIDTH = 110;
-		const windowWidth = window.innerWidth;
 
 		setTranslate((windowWidth - SUM_OF_BUTTONS_WIDTH) * -index);
-	}, [index]);
+	}, [index, windowWidth]);
 
 	useEffect(() => {
 		data && location === city && dispatch(changeIsSuccess(true));
