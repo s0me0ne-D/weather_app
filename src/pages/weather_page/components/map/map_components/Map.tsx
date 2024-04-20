@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
-import { MapContainer, TileLayer, useMap } from "react-leaflet";
+import React, { useContext } from "react";
+import { MapContainer, TileLayer } from "react-leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
 import { useGetForecastByCityQuery } from "../../../../../redux/api";
 import { locationsContext } from "../../../../../App";

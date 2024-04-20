@@ -13,17 +13,30 @@ import { changeIsError, changeIsSuccess } from "../../../redux/popupSlice";
 import { IError } from "../../../interfaces/geolocationSearch_interface";
 import { RootStore } from "../../../redux/store";
 import { ThermometerIcon } from "../../../assets/icons/ThermometerIcon";
+import { Box, CircularProgress } from "@mui/material";
 
 const errorLocation: IError = {
 	isError: true,
 	message: "Ooooops, can`t find this city name.",
 };
 
+const loaderStyle = {
+	width: "100%",
+	height: "100%",
+	display: "grid",
+	placeItems: "center",
+	gridColumn: "1/span4",
+	gridRow: "1/span3",
+};
+
 export const ForecastPage = ({ city }: { city: string }) => {
-	const { data, isError, isLoading, isFetching } = useGetForecastByCityQuery(city);
+	const { data, isError, isLoading } = useGetForecastByCityQuery(city);
+
 	const { locations, setLocations } = useContext(locationsContext);
 	const [translate, setTranslate] = useState<number | null>(null);
-	const { popupReducer, activeLocationIndexReducer } = useSelector((store: RootStore) => store);
+
+	const { index } = useSelector((store: RootStore) => store.activeLocationIndexReducer);
+	const { location } = useSelector((store: RootStore) => store.popupReducer);
 
 	const dispatch = useDispatch();
 
@@ -31,11 +44,11 @@ export const ForecastPage = ({ city }: { city: string }) => {
 		const SUM_OF_BUTTONS_WIDTH = 110;
 		const windowWidth = window.innerWidth;
 
-		setTranslate((windowWidth - SUM_OF_BUTTONS_WIDTH) * -activeLocationIndexReducer.index);
-	}, [activeLocationIndexReducer.index]);
+		setTranslate((windowWidth - SUM_OF_BUTTONS_WIDTH) * -index);
+	}, [index]);
 
 	useEffect(() => {
-		data && popupReducer.location === city && dispatch(changeIsSuccess(true));
+		data && location === city && dispatch(changeIsSuccess(true));
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [data]);
 
@@ -52,28 +65,35 @@ export const ForecastPage = ({ city }: { city: string }) => {
 		setLocations(newLocations);
 	};
 
-	return data ? (
+	return (
 		<div className="forecast" style={{ transform: `translateX(${translate}px)` }}>
-			<CityDate adress={data.resolvedAddress} timezone={data.timezone} />
-			<div className="forecast_temp forecast-element">
-				<div className="forecast-element_icon">
-					<ThermometerIcon />
-				</div>
-				<div className="forecast_temp_description">
-					{Math.floor(data.currentConditions.temp)}
-					<span className="forecast_temp_deg">°c</span>
-				</div>
-			</div>
-			<CurrentConditionIcon condition={data.currentConditions.icon as IIconType} />
-			<WindInfo
-				deg={data.currentConditions.winddir}
-				windspeed={data.currentConditions.windspeed}
-				windgust={data.currentConditions.windgust}
-			/>
-			<WeeklyForecast weekly={data.days} />
-			<HourlyForecast hourly={data.days[0].hours} timezone={data.timezone} />
+			{data ? (
+				<>
+					{" "}
+					<CityDate adress={data.resolvedAddress} timezone={data.timezone} />
+					<div className="forecast_temp forecast-element">
+						<div className="forecast-element_icon">
+							<ThermometerIcon />
+						</div>
+						<div className="forecast_temp_description">
+							{Math.floor(data.currentConditions.temp)}
+							<span className="forecast_temp_deg">°c</span>
+						</div>
+					</div>
+					<CurrentConditionIcon condition={data.currentConditions.icon as IIconType} />
+					<WindInfo
+						deg={data.currentConditions.winddir}
+						windspeed={data.currentConditions.windspeed}
+						windgust={data.currentConditions.windgust}
+					/>
+					<WeeklyForecast weekly={data.days} />
+					<HourlyForecast hourly={data.days[0].hours} timezone={data.timezone} />
+				</>
+			) : isLoading ? (
+				<Box sx={loaderStyle}>
+					<CircularProgress sx={{ color: "#00ffeb" }} />
+				</Box>
+			) : null}
 		</div>
-	) : (
-		<>Loading...</>
 	);
 };

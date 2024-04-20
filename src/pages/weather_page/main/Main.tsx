@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { ArrowBtn } from "../components/buttons/ArrowBtn";
 import { locationsContext } from "../../../App";
 import { ForecastPage } from "./ForecastPage";

@@ -50,10 +50,12 @@ export const GeolocationSearch = () => {
 			.then((response) => response.json())
 			.then((data) => {
 				const location = data.address.city;
-				if (!(locations as Array<any>).includes(location)) {
+				if (!(locations as Array<string>).includes(location)) {
 					dispatch(changeIsLoading(false));
 					dispatch(changeLocation(location));
 					setLocations((prev: Array<string>) => [...prev, location]);
+				} else if (location === null) {
+					dispatch(changeIsError(navigatorError));
 				} else {
 					dispatch(changeLocationExist(true));
 				}
