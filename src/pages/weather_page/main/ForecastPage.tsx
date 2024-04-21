@@ -30,6 +30,8 @@ const loaderStyle = {
 	gridRow: "1/span3",
 };
 
+const SUM_OF_BUTTONS_WIDTH = 110;
+
 export const ForecastPage = ({ city }: { city: string }) => {
 	const { data, isError, isLoading } = useGetForecastByCityQuery(city);
 
@@ -44,8 +46,6 @@ export const ForecastPage = ({ city }: { city: string }) => {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		const SUM_OF_BUTTONS_WIDTH = 110;
-
 		setTranslate((windowWidth - SUM_OF_BUTTONS_WIDTH) * -index);
 	}, [index, windowWidth]);
 

@@ -21,24 +21,16 @@ const cityNameError: IError = {
 	isError: true,
 	message: ErrorMessages.CityName,
 };
-export const maxLocationsError: IError = {
-	isError: true,
-	message: ErrorMessages.MaxLocations,
-};
 
 export const GeolocationSearch = () => {
 	const { locations, setLocations } = useContext(locationsContext);
 	const dispatch = useDispatch();
 	function handleLocationClick() {
-		if (locations.length === 5) {
-			dispatch(changeIsError(maxLocationsError));
+		dispatch(changeIsLoading(true));
+		if (navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(success, errorHandler);
 		} else {
-			dispatch(changeIsLoading(true));
-			if (navigator.geolocation) {
-				navigator.geolocation.getCurrentPosition(success, errorHandler);
-			} else {
-				dispatch(changeIsError(navigatorError));
-			}
+			dispatch(changeIsError(navigatorError));
 		}
 	}
 

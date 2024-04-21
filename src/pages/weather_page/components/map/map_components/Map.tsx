@@ -14,8 +14,10 @@ const DAY_MAP = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
 
 export const Map = () => {
 	const { locations } = useContext(locationsContext);
-	const { index } = useSelector((store: RootStore) => store.activeLocationIndexReducer);
-	const { data } = useGetForecastByCityQuery(locations[index]);
+	const { index: activeIndex } = useSelector(
+		(store: RootStore) => store.activeLocationIndexReducer
+	);
+	const { data } = useGetForecastByCityQuery(locations[activeIndex]);
 
 	return data ? (
 		<MapContainer center={[data?.latitude, data?.longitude]} zoom={10} minZoom={3}>
@@ -24,7 +26,7 @@ export const Map = () => {
 				url={DAY_MAP}
 			/>
 			<MarkerClusterGroup>
-				{locations.map((location) => (
+				{locations.map((location, index) => (
 					<LocationMarker location={location} key={location} index={index} />
 				))}
 			</MarkerClusterGroup>
