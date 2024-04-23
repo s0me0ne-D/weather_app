@@ -22,7 +22,12 @@ const cityNameError: IError = {
 	message: ErrorMessages.CityName,
 };
 
-export const GeolocationSearch = () => {
+interface GeolocationSearchProps {
+	closeBurger?: React.Dispatch<React.SetStateAction<boolean>>;
+	burgerState?: boolean;
+}
+
+export const GeolocationSearch = ({ closeBurger, burgerState }: GeolocationSearchProps) => {
 	const { locations, setLocations } = useContext(locationsContext);
 	const dispatch = useDispatch();
 	function handleLocationClick() {
@@ -38,14 +43,20 @@ export const GeolocationSearch = () => {
 		const latitude = position.coords.latitude;
 		const longitude = position.coords.longitude;
 		const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`;
+
+		const handleSuccess = (location: string) => {
+			burgerState && closeBurger && closeBurger(false);
+			dispatch(changeIsLoading(false));
+			dispatch(changeLocation(location));
+			setLocations((prev: Array<string>) => [...prev, location]);
+		};
+
 		fetch(url)
 			.then((response) => response.json())
 			.then((data) => {
-				const location = data.address.city;
+				const location: string = data.address.city;
 				if (!(locations as Array<string>).includes(location)) {
-					dispatch(changeIsLoading(false));
-					dispatch(changeLocation(location));
-					setLocations((prev: Array<string>) => [...prev, location]);
+					handleSuccess(location);
 				} else if (location === null) {
 					dispatch(changeIsError(navigatorError));
 				} else {

@@ -4,7 +4,12 @@ import "./citySearch.scss";
 import { useDispatch } from "react-redux";
 import { changeLocation, changeLocationExist } from "../redux/popupSlice";
 
-export const CitySearch = () => {
+interface CitySearchProps {
+	closeBurger?: React.Dispatch<React.SetStateAction<boolean>>;
+	burgerState?: boolean;
+}
+
+export const CitySearch = ({ closeBurger, burgerState }: CitySearchProps) => {
 	const [value, setValue] = useState<string>("");
 	const { locations, setLocations } = useContext(locationsContext);
 	const dispatch = useDispatch();
@@ -12,6 +17,7 @@ export const CitySearch = () => {
 		if ((locations as Array<string>).includes(value)) {
 			dispatch(changeLocationExist(true));
 		} else if (value.length !== 0) {
+			burgerState && closeBurger && closeBurger(false);
 			dispatch(changeLocation(value));
 			setLocations((prev: Array<string>) => [...prev, value]);
 		}

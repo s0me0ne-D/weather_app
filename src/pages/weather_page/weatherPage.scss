@@ -5,13 +5,7 @@
 	display: grid;
 	grid-template-rows: 70px 1fr;
 	gap: 5px;
-	&_header {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		gap: 10px;
-		grid-row: 1;
-	}
+
 	&_container {
 		overflow: hidden;
 	}

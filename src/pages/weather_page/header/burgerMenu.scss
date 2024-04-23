@@ -1,6 +1,9 @@
+@import "../../../styles/variables";
+
 .burger-menu {
 	background: none;
-
+	grid-column: 2;
+	margin: 0 auto;
 	span {
 		display: block;
 		width: 33px;
@@ -48,5 +51,11 @@
 				transform: rotate(-45deg) translate(-2px, -1px);
 			}
 		}
+	}
+}
+
+@media (width > $MOBILE_WIDTH) {
+	.burger-menu {
+		display: none;
 	}
 }
