@@ -5,6 +5,7 @@ import { ForecastPage } from "./ForecastPage";
 import { MapPage } from "../components/map/MapPage";
 import { useSelector } from "react-redux";
 import { RootStore } from "../../../redux/store";
+import "./main.scss";
 
 export const Main = ({ isMap }: { isMap: boolean }) => {
 	const { locations } = useContext(locationsContext);
