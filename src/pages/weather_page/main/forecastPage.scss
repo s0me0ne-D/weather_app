@@ -1,3 +1,5 @@
+@import "../../../styles/variables";
+
 .forecast {
 	min-width: 100%;
 	height: calc(100svh - 105px);
@@ -25,6 +27,15 @@
 			display: block;
 			font-size: max(15px, min(4vw, 3rem));
 			opacity: 0.5;
+		}
+	}
+}
+
+@media (width<=$MOBILE_WIDTH) {
+	.forecast {
+		grid-template-rows: 1fr 1fr 1fr 2fr;
+		&_temp {
+			grid-column: 4;
 		}
 	}
 }

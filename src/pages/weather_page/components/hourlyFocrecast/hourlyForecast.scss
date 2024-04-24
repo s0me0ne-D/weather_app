@@ -1,3 +1,5 @@
+@import "../../../../styles/variables";
+
 .hourly {
 	grid-row: 3;
 	grid-column: 1 / span 4;
@@ -44,5 +46,11 @@
 @media (width<1000px) {
 	.hourly {
 		overflow-x: scroll;
+	}
+}
+
+@media (width<=$MOBILE_WIDTH) {
+	.hourly {
+		grid-row: 4;
 	}
 }

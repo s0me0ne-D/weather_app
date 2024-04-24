@@ -1,4 +1,4 @@
-@import "../../../../styles/animations";
+@import "../../../../styles/animations", "../../../../styles/variables";
 
 .weekly {
 	grid-row: 2;
@@ -87,5 +87,13 @@
 				opacity: 1;
 			}
 		}
+	}
+}
+
+@media (width<=$MOBILE_WIDTH) {
+	.weekly {
+		grid-column: 1 / span 4;
+		grid-row: 3;
+		font-size: 0.7em;
 	}
 }

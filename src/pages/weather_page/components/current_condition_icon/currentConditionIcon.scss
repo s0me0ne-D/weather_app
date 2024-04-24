@@ -1,3 +1,5 @@
+@import "../../../../styles/variables";
+
 .condition {
 	display: flex;
 	flex-direction: column;
@@ -10,7 +12,18 @@
 	}
 	&_text {
 		font-size: max(15px, min(2vw, 1.5rem));
-
+		text-align: center;
 		opacity: 0.5;
+	}
+}
+
+@media (width<=$MOBILE_WIDTH) {
+	.condition {
+		grid-column: 4;
+		grid-row: 2;
+		svg {
+			width: 4em;
+			height: 4em;
+		}
 	}
 }

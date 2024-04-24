@@ -35,8 +35,10 @@ export const WindInfo = ({ deg, windspeed, windgust }: WindInfoProps) => {
 					</div>
 				</div>
 				<div className="wind_compass">
-					<CompassArrow deg={deg} />
-					<Compass />
+					<div className="wind_compass_container">
+						<CompassArrow deg={deg} />
+						<Compass />
+					</div>
 				</div>
 			</div>
 		</div>
