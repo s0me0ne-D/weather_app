@@ -11,7 +11,7 @@ interface HeaderProps {
 
 export const Header = ({ onClick }: HeaderProps) => {
 	const [isOpen, setIsOpen] = useState<boolean>(false);
-	console.log(isOpen);
+
 	return (
 		<header className="header">
 			<BurgerMenu isOpen={isOpen} onClick={setIsOpen} />

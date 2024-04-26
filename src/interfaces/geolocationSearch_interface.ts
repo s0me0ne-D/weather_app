@@ -1,5 +1,5 @@
 export interface IGeolocationSearch {
-	location: string;
+	lookingForLocation: string;
 	isLoading: boolean;
 	error: IError;
 	locationExist: boolean;

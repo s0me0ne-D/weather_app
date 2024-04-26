@@ -35,7 +35,7 @@
 		top: 70px;
 		left: 0;
 		flex-direction: column;
-		z-index: 9;
+		z-index: 99999;
 		display: none;
 		&.isActive {
 			display: flex;

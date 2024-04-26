@@ -7,7 +7,6 @@ export const activeLocationIndexSlice = createSlice({
 	initialState,
 	reducers: {
 		changeActiveLocationIndex: (state, action: PayloadAction<number>) => {
-			console.log(action.payload);
 			state.index = action.payload;
 		},
 	},

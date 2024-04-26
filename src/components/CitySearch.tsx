@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { locationsContext } from "../App";
 import "./citySearch.scss";
 import { useDispatch } from "react-redux";
-import { changeLocation, changeLocationExist } from "../redux/popupSlice";
+import { addLookingForLocation, showLocationExistPopup } from "../redux/popupSlice";
 
 interface CitySearchProps {
 	closeBurger?: React.Dispatch<React.SetStateAction<boolean>>;
@@ -15,10 +15,10 @@ export const CitySearch = ({ closeBurger, burgerState }: CitySearchProps) => {
 	const dispatch = useDispatch();
 	const handleOnKeyDown = () => {
 		if ((locations as Array<string>).includes(value)) {
-			dispatch(changeLocationExist(true));
+			dispatch(showLocationExistPopup(true));
 		} else if (value.length !== 0) {
 			burgerState && closeBurger && closeBurger(false);
-			dispatch(changeLocation(value));
+			dispatch(addLookingForLocation(value));
 			setLocations((prev: Array<string>) => [...prev, value]);
 		}
 		setValue("");

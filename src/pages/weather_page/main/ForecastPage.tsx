@@ -9,7 +9,7 @@ import { WindInfo } from "../components/wind_info/WindInfo";
 import { HourlyForecast } from "../components/hourlyFocrecast/HourlyForecast";
 import { WeeklyForecast } from "../components/weekly_forecast/WeeklyForecast";
 import { useDispatch, useSelector } from "react-redux";
-import { changeIsError, changeIsSuccess } from "../../../redux/popupSlice";
+import { showErrorPopup, showSuccessPopup } from "../../../redux/popupSlice";
 import { IError } from "../../../interfaces/geolocationSearch_interface";
 import { RootStore } from "../../../redux/store";
 import { ThermometerIcon } from "../../../assets/icons/ThermometerIcon";
@@ -39,7 +39,7 @@ export const ForecastPage = ({ city }: { city: string }) => {
 	const [translate, setTranslate] = useState<number | null>(null);
 
 	const { index } = useSelector((store: RootStore) => store.activeLocationIndexReducer);
-	const { location } = useSelector((store: RootStore) => store.popupReducer);
+	const { lookingForLocation } = useSelector((store: RootStore) => store.popupReducer);
 
 	const windowWidth = useWindowWidth();
 
@@ -50,13 +50,13 @@ export const ForecastPage = ({ city }: { city: string }) => {
 	}, [index, windowWidth]);
 
 	useEffect(() => {
-		data && location === city && dispatch(changeIsSuccess(true));
+		data && lookingForLocation === city && dispatch(showSuccessPopup(true));
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [data]);
 
 	useLayoutEffect(() => {
 		if (isError) {
-			dispatch(changeIsError(errorLocation));
+			dispatch(showErrorPopup(errorLocation));
 			deleteErrorCityName();
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps

@@ -4,10 +4,10 @@ import "./geolocationSearch.scss";
 import { LocationIcon } from "../assets/icons/LocationIcon";
 import { useDispatch } from "react-redux";
 import {
-	changeIsError,
-	changeIsLoading,
-	changeLocation,
-	changeLocationExist,
+	showErrorPopup,
+	showLoadingPopup,
+	addLookingForLocation,
+	showLocationExistPopup,
 } from "../redux/popupSlice";
 import { IError } from "../interfaces/geolocationSearch_interface";
 import { ErrorMessages } from "../interfaces/errors_enums";
@@ -31,11 +31,11 @@ export const GeolocationSearch = ({ closeBurger, burgerState }: GeolocationSearc
 	const { locations, setLocations } = useContext(locationsContext);
 	const dispatch = useDispatch();
 	function handleLocationClick() {
-		dispatch(changeIsLoading(true));
+		dispatch(showLoadingPopup(true));
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(success, errorHandler);
 		} else {
-			dispatch(changeIsError(navigatorError));
+			dispatch(showErrorPopup(navigatorError));
 		}
 	}
 
@@ -46,8 +46,8 @@ export const GeolocationSearch = ({ closeBurger, burgerState }: GeolocationSearc
 
 		const handleSuccess = (location: string) => {
 			burgerState && closeBurger && closeBurger(false);
-			dispatch(changeIsLoading(false));
-			dispatch(changeLocation(location));
+			dispatch(showLoadingPopup(false));
+			dispatch(addLookingForLocation(location));
 			setLocations((prev: Array<string>) => [...prev, location]);
 		};
 
@@ -58,18 +58,18 @@ export const GeolocationSearch = ({ closeBurger, burgerState }: GeolocationSearc
 				if (!(locations as Array<string>).includes(location)) {
 					handleSuccess(location);
 				} else if (location === null) {
-					dispatch(changeIsError(navigatorError));
+					dispatch(showErrorPopup(navigatorError));
 				} else {
-					dispatch(changeLocationExist(true));
+					dispatch(showLocationExistPopup(true));
 				}
 			})
 
 			.catch(() => {
-				dispatch(changeIsError(cityNameError));
+				dispatch(showErrorPopup(cityNameError));
 			});
 	}
 	function errorHandler() {
-		dispatch(changeIsError(cityNameError));
+		dispatch(showErrorPopup(cityNameError));
 	}
 
 	return (

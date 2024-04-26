@@ -6,10 +6,10 @@ import attentionAnimation from "../assets/animations/attentionAnimation.json";
 import successAnimation from "../assets/animations/successAnimation.json";
 import { useLottie } from "lottie-react";
 import {
-	changeIsError,
-	changeIsSuccess,
-	changeLocation,
-	changeLocationExist,
+	showErrorPopup,
+	showSuccessPopup,
+	addLookingForLocation,
+	showLocationExistPopup,
 } from "../redux/popupSlice";
 import "./popup.scss";
 
@@ -20,7 +20,7 @@ const messages = {
 };
 
 export const Popup = () => {
-	const { error, isLoading, locationExist, isSuccess, location } = useSelector(
+	const { error, isLoading, locationExist, isSuccess, lookingForLocation } = useSelector(
 		(store: RootStore) => store.popupReducer
 	);
 	const animation = useMemo(() => {
@@ -37,12 +37,12 @@ export const Popup = () => {
 	const dispatch = useDispatch();
 	const handlerConfirmation = () => {
 		if (error.isError) {
-			dispatch(changeIsError({ isError: false, message: "" }));
+			dispatch(showErrorPopup({ isError: false, message: "" }));
 		} else if (isSuccess) {
-			dispatch(changeIsSuccess(false));
-			dispatch(changeLocation(""));
+			dispatch(showSuccessPopup(false));
+			dispatch(addLookingForLocation(""));
 		} else {
-			dispatch(changeLocationExist(false));
+			dispatch(showLocationExistPopup(false));
 		}
 	};
 	const options = {
@@ -60,7 +60,7 @@ export const Popup = () => {
 					<span>{messages.locationExist}</span>
 				) : isSuccess ? (
 					<span>
-						{location} {messages.isSuccess}
+						{lookingForLocation} {messages.isSuccess}
 					</span>
 				) : null}
 			</div>
