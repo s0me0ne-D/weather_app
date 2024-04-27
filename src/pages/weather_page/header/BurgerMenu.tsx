@@ -1,4 +1,4 @@
-import React from "react";
+import React, { LegacyRef, forwardRef } from "react";
 import "./burgerMenu.scss";
 
 interface BurgerMenu {
@@ -6,12 +6,18 @@ interface BurgerMenu {
 	onClick: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const BurgerMenu = ({ isOpen, onClick }: BurgerMenu) => {
-	return (
-		<button className={`burger-menu ${isOpen && "open"}`} onClick={() => onClick((prev) => !prev)}>
-			<span></span>
-			<span></span>
-			<span></span>
-		</button>
-	);
-};
+export const BurgerMenu = forwardRef(
+	({ isOpen, onClick }: BurgerMenu, ref: LegacyRef<HTMLButtonElement> | null) => {
+		return (
+			<button
+				ref={ref}
+				className={`burger-menu ${isOpen && "open"}`}
+				onClick={() => onClick((prev) => !prev)}
+			>
+				<span></span>
+				<span></span>
+				<span></span>
+			</button>
+		);
+	}
+);
