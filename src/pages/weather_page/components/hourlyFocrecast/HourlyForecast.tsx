@@ -67,111 +67,113 @@ export const HourlyForecast = ({
 					<CloseIcon />
 				</button>
 			)}
-			<table className="hourly_forecast">
-				<tbody>
-					<tr>
-						<th className="hourly_forecast_description">
-							{currentHourlyDate && currentHourlyDate}
-						</th>
-						{dataTime.map((time, index) => (
-							<td
-								key={time}
-								className={`hourly_forecast_time bb ${
-									currentTimeIndex === index ? "currentTime" : ""
-								} ${hoverColumnIndex === index ? "isHover" : ""}`}
-								onMouseEnter={() => mouseOn(index)}
-								onMouseLeave={mouseLeave}
-							>
-								{time}
-							</td>
-						))}
-					</tr>
-					<tr>
-						<th></th>
-						{hourly.map((hour, index) => (
-							<td
-								className={`bb ${currentTimeIndex === index ? "currentTime" : ""} ${
-									hoverColumnIndex === index ? "isHover" : ""
-								}`}
-								key={index}
-								onMouseEnter={() => mouseOn(index)}
-								onMouseLeave={mouseLeave}
-							>
-								<WeatherIcon condition={hour.icon as IIconType} />
-							</td>
-						))}
-					</tr>
-					<tr>
-						<th className="hourly_forecast_description">Temperature</th>
-						{hourly.map((hour, index) => (
-							<td
-								className={`bb ${currentTimeIndex === index ? "currentTime" : ""} ${
-									hoverColumnIndex === index ? "isHover" : ""
-								}`}
-								key={index}
-								onMouseEnter={() => mouseOn(index)}
-								onMouseLeave={mouseLeave}
-							>
-								<div className="temp">
-									{Math.floor(hour.temp)}
-									<span>°C</span>
-								</div>
-							</td>
-						))}
-					</tr>
-					<tr>
-						<th className="hourly_forecast_description">Feels like</th>
-						{hourly.map((hour, index) => (
-							<td
-								className={`bb ${currentTimeIndex === index ? "currentTime" : ""} ${
-									hoverColumnIndex === index ? "isHover" : ""
-								}`}
-								key={index}
-								onMouseEnter={() => mouseOn(index)}
-								onMouseLeave={mouseLeave}
-							>
-								<div className="temp">
-									{Math.floor(hour.feelslike)}
-									<span>°C</span>
-								</div>
-							</td>
-						))}
-					</tr>
-					<tr>
-						<th className="hourly_forecast_description">Precipitation</th>
+			<div className={`hourly-container ${isPopup ? "popup popup-hourly" : "hourly"}`}>
+				<table className="hourly_forecast">
+					<tbody>
+						<tr>
+							<th className="hourly_forecast_description">
+								{currentHourlyDate && currentHourlyDate}
+							</th>
+							{dataTime.map((time, index) => (
+								<td
+									key={time}
+									className={`hourly_forecast_time bb ${
+										currentTimeIndex === index ? "currentTime" : ""
+									} ${hoverColumnIndex === index ? "isHover" : ""}`}
+									onMouseEnter={() => mouseOn(index)}
+									onMouseLeave={mouseLeave}
+								>
+									{time}
+								</td>
+							))}
+						</tr>
+						<tr>
+							<th></th>
+							{hourly.map((hour, index) => (
+								<td
+									className={`bb ${currentTimeIndex === index ? "currentTime" : ""} ${
+										hoverColumnIndex === index ? "isHover" : ""
+									}`}
+									key={index}
+									onMouseEnter={() => mouseOn(index)}
+									onMouseLeave={mouseLeave}
+								>
+									<WeatherIcon condition={hour.icon as IIconType} />
+								</td>
+							))}
+						</tr>
+						<tr>
+							<th className="hourly_forecast_description">Temperature</th>
+							{hourly.map((hour, index) => (
+								<td
+									className={`bb ${currentTimeIndex === index ? "currentTime" : ""} ${
+										hoverColumnIndex === index ? "isHover" : ""
+									}`}
+									key={index}
+									onMouseEnter={() => mouseOn(index)}
+									onMouseLeave={mouseLeave}
+								>
+									<div className="temp">
+										{Math.floor(hour.temp)}
+										<span>°C</span>
+									</div>
+								</td>
+							))}
+						</tr>
+						<tr>
+							<th className="hourly_forecast_description">Feels like</th>
+							{hourly.map((hour, index) => (
+								<td
+									className={`bb ${currentTimeIndex === index ? "currentTime" : ""} ${
+										hoverColumnIndex === index ? "isHover" : ""
+									}`}
+									key={index}
+									onMouseEnter={() => mouseOn(index)}
+									onMouseLeave={mouseLeave}
+								>
+									<div className="temp">
+										{Math.floor(hour.feelslike)}
+										<span>°C</span>
+									</div>
+								</td>
+							))}
+						</tr>
+						<tr>
+							<th className="hourly_forecast_description">Precipitation</th>
 
-						{hourly.map((hour, index) => (
-							<td
-								className={`bb ${currentTimeIndex === index ? "currentTime" : ""} ${
-									hoverColumnIndex === index ? "isHover" : ""
-								}`}
-								key={index}
-								onMouseEnter={() => mouseOn(index)}
-								onMouseLeave={mouseLeave}
-							>
-								{Math.floor(hour.precip)}
-								<span>mm</span>
-							</td>
-						))}
-					</tr>
-					<tr>
-						<th className="hourly_forecast_description">Precipitation chance</th>
-						{hourly.map((hour, index) => (
-							<td
-								className={`${currentTimeIndex === index ? "currentTime" : ""} ${
-									hoverColumnIndex === index ? "isHover" : ""
-								}`}
-								key={index}
-								onMouseEnter={() => mouseOn(index)}
-								onMouseLeave={mouseLeave}
-							>
-								{Math.floor(hour.precipprob)}
-								<span>%</span>
-							</td>
-						))}
-					</tr>
-				</tbody>
-			</table>
+							{hourly.map((hour, index) => (
+								<td
+									className={`bb ${currentTimeIndex === index ? "currentTime" : ""} ${
+										hoverColumnIndex === index ? "isHover" : ""
+									}`}
+									key={index}
+									onMouseEnter={() => mouseOn(index)}
+									onMouseLeave={mouseLeave}
+								>
+									{Math.floor(hour.precip)}
+									<span>mm</span>
+								</td>
+							))}
+						</tr>
+						<tr>
+							<th className="hourly_forecast_description">Precipitation chance</th>
+							{hourly.map((hour, index) => (
+								<td
+									className={`${currentTimeIndex === index ? "currentTime" : ""} ${
+										hoverColumnIndex === index ? "isHover" : ""
+									}`}
+									key={index}
+									onMouseEnter={() => mouseOn(index)}
+									onMouseLeave={mouseLeave}
+								>
+									{Math.floor(hour.precipprob)}
+									<span>%</span>
+								</td>
+							))}
+						</tr>
+					</tbody>
+				</table>
+			</div>
 		</div>
 	);
 };

@@ -31,6 +31,7 @@ const loaderStyle = {
 };
 
 const SUM_OF_BUTTONS_WIDTH = 110;
+const SUM_OF_MOBILE_PADDINGS = 10;
 
 export const ForecastPage = ({ city }: { city: string }) => {
 	const { data, isError, isLoading } = useGetForecastByCityQuery(city);
@@ -46,7 +47,8 @@ export const ForecastPage = ({ city }: { city: string }) => {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		setTranslate((windowWidth - SUM_OF_BUTTONS_WIDTH) * -index);
+		const arg = windowWidth <= 700 ? SUM_OF_MOBILE_PADDINGS : SUM_OF_BUTTONS_WIDTH;
+		setTranslate((windowWidth - arg) * -index);
 	}, [index, windowWidth]);
 
 	useEffect(() => {
