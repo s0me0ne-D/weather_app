@@ -7,7 +7,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootStore } from "../../../../../../redux/store";
 import { changeActiveLocationIndex } from "../../../../../../redux/activeLocationIndexSlice";
 
-export const Location = ({ location, index }: { location: string; index: number }) => {
+interface LocationProps {
+	location: string;
+	index?: number;
+	openMobileList?: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export const Location = ({ location, index, openMobileList }: LocationProps) => {
 	const { index: activeIndex } = useSelector(
 		(store: RootStore) => store.activeLocationIndexReducer
 	);
@@ -15,7 +21,8 @@ export const Location = ({ location, index }: { location: string; index: number 
 	const [cityName, setCityName] = useState("");
 	const dispatch = useDispatch();
 	const handleOnClick = () => {
-		dispatch(changeActiveLocationIndex(index));
+		index !== undefined && dispatch(changeActiveLocationIndex(index!));
+		openMobileList && openMobileList((prev) => !prev);
 	};
 
 	useEffect(() => {
@@ -24,8 +31,8 @@ export const Location = ({ location, index }: { location: string; index: number 
 
 	return data ? (
 		<button
-			className={`locations_location ${activeIndex === index && "activeLocation"}`}
-			onClick={() => handleOnClick()}
+			className={`locations_location ${activeIndex === index ? "activeLocation" : ""}`}
+			onClick={handleOnClick}
 		>
 			<span className="locations_location_city">{cityName}</span>
 			<div className="locations_location_description">

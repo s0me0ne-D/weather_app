@@ -1,4 +1,4 @@
-@import "../../../../../../styles/themes";
+@import "../../../../../../styles/themes", "../../../../../../styles/variables";
 
 .locations {
 	&_container {
@@ -36,4 +36,12 @@
 .activeLocation {
 	border: 1px solid rgba(255, 255, 255, 0.5);
 	background-color: var(--var-tertiary-color);
+}
+
+@media (width<=$MOBILE_WIDTH) {
+	.locations_location {
+		position: relative;
+		width: 100%;
+		z-index: 999999999;
+	}
 }

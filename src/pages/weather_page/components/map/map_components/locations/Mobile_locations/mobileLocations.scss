@@ -1,0 +1,23 @@
+@import "../../../../../../../styles/themes";
+
+.mobile-locations {
+	padding: 5px;
+	position: relative;
+
+	&_items {
+		width: 100%;
+		padding: 85px 10px 10px;
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 99999999;
+		background: var(--var-primary-color);
+		&_container {
+			max-height: 400px;
+			display: flex;
+			flex-direction: column;
+			gap: 5px;
+			overflow-y: scroll;
+		}
+	}
+}
