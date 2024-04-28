@@ -27,6 +27,15 @@
 		}
 	}
 }
+.weather {
+	&_container {
+		overflow: hidden;
+	}
+	&_forecast {
+		display: flex;
+		height: 100%;
+	}
+}
 
 @media (width<=$MOBILE_WIDTH) {
 	.main {

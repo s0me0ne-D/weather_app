@@ -5,12 +5,4 @@
 	display: grid;
 	grid-template-rows: 70px 1fr;
 	gap: 5px;
-
-	&_container {
-		overflow: hidden;
-	}
-	&_forecast {
-		display: flex;
-		height: 100%;
-	}
 }
