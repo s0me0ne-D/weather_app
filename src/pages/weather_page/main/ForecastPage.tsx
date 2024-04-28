@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useLayoutEffect, useState } from "react";
+import React, { useContext, useEffect, useLayoutEffect } from "react";
 import { useGetForecastByCityQuery } from "../../../redux/api";
 import { locationsContext } from "../../../App";
 import { CityDate } from "../components/city_date/CityDate";
@@ -14,7 +14,6 @@ import { IError } from "../../../interfaces/geolocationSearch_interface";
 import { RootStore } from "../../../redux/store";
 import { ThermometerIcon } from "../../../assets/icons/ThermometerIcon";
 import { Box, CircularProgress } from "@mui/material";
-import { useWindowWidth } from "../../../hooks/useWindowWidth";
 
 const errorLocation: IError = {
 	isError: true,
@@ -30,26 +29,13 @@ const loaderStyle = {
 	gridRow: "1/span3",
 };
 
-const SUM_OF_BUTTONS_WIDTH = 110;
-const SUM_OF_MOBILE_PADDINGS = 10;
-
 export const ForecastPage = ({ city }: { city: string }) => {
 	const { data, isError, isLoading } = useGetForecastByCityQuery(city);
 
 	const { locations, setLocations } = useContext(locationsContext);
-	const [translate, setTranslate] = useState<number | null>(null);
-
-	const { index } = useSelector((store: RootStore) => store.activeLocationIndexReducer);
 	const { lookingForLocation } = useSelector((store: RootStore) => store.popupReducer);
 
-	const windowWidth = useWindowWidth();
-
 	const dispatch = useDispatch();
-
-	useEffect(() => {
-		const arg = windowWidth <= 700 ? SUM_OF_MOBILE_PADDINGS : SUM_OF_BUTTONS_WIDTH;
-		setTranslate((windowWidth - arg) * -index);
-	}, [index, windowWidth]);
 
 	useEffect(() => {
 		data && lookingForLocation === city && dispatch(showSuccessPopup(true));
@@ -70,10 +56,9 @@ export const ForecastPage = ({ city }: { city: string }) => {
 	};
 
 	return (
-		<div className="forecast" style={{ transform: `translateX(${translate}px)` }}>
+		<div className="forecast">
 			{data ? (
 				<>
-					{" "}
 					<CityDate adress={data.resolvedAddress} timezone={data.timezone} />
 					<div className="forecast_temp forecast-element">
 						<div className="forecast-element_icon">

@@ -5,6 +5,7 @@ import { WeatherIcon } from "../WeatherIcon";
 import { CloseIcon } from "../../../../assets/icons/CloseIcon";
 import { getLocalTime } from "../../../../utils/getLocalTime";
 import { useOutsideClick } from "../../../../hooks/useOutsideClick";
+import { useSwiper } from "swiper/react";
 
 interface HourlyForecastProps {
 	hourly: Array<Hour>;
@@ -55,7 +56,7 @@ export const HourlyForecast = ({
 	return (
 		<div
 			ref={isPopup ? hourlyPopupRef : undefined}
-			className={`forecast-element ${isPopup ? "popup popup-hourly" : "hourly"}`}
+			className={`forecast-element ${isPopup ? "popup popup-hourly" : "hourly"} swiper-no-swiping`}
 		>
 			{isPopup && (
 				<button

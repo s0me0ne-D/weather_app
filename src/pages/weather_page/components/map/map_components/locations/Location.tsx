@@ -21,7 +21,7 @@ export const Location = ({ location, index, openMobileList }: LocationProps) => 
 	const [cityName, setCityName] = useState("");
 	const dispatch = useDispatch();
 	const handleOnClick = () => {
-		index !== undefined && dispatch(changeActiveLocationIndex(index!));
+		index !== undefined && dispatch(changeActiveLocationIndex(index));
 		openMobileList && openMobileList((prev) => !prev);
 	};
 
