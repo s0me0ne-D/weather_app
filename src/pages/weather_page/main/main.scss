@@ -32,15 +32,13 @@
 		overflow: hidden;
 	}
 	&_forecast {
-		display: flex;
 		height: 100%;
+		display: flex;
 	}
 }
-
 @media (width<=$MOBILE_WIDTH) {
 	.main {
 		grid-template-columns: none;
-		padding: 0 5px;
 	}
 	.pagination-dots {
 		grid-column: auto;

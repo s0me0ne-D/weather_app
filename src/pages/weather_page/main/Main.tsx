@@ -27,6 +27,7 @@ export const Main = ({ isMap }: { isMap: boolean }) => {
 			<div className="weather_container">
 				<div className="weather_forecast">
 					<Swiper
+						speed={700}
 						className="mySwiper"
 						onActiveIndexChange={(swiperCore: any) => {
 							dispatch(changeActiveLocationIndex(swiperCore.activeIndex));
