@@ -1,8 +1,9 @@
+@import "../styles/variables";
 .city-search {
 	height: 40px;
 	padding: 5px 10px;
 	background-color: transparent;
-	border: 1px solid var(--var-text-color);
+	border: 1px solid $TEXT_COLOR;
 	font-size: 20px;
-	color: var(--var-text-color);
+	color: $TEXT_COLOR;
 }

@@ -1,3 +1,5 @@
+@import "../styles/variables";
+
 $FONT-SIZE: 1.2rem;
 .location-popup {
 	display: flex;
@@ -23,10 +25,10 @@ $FONT-SIZE: 1.2rem;
 	&_btn {
 		width: 10rem;
 		height: 40px;
-		color: var(--var-text-color);
+		color: $TEXT_COLOR;
 		font-size: $FONT-SIZE;
 		background: transparent;
-		border: 1px solid var(--var-text-color);
+		border: 1px solid $TEXT_COLOR;
 		border-radius: 5px;
 		transition: 0.1s ease-in;
 		&:hover {

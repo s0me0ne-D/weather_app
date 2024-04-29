@@ -1,9 +1,10 @@
+@import "../styles/variables";
 .splash-page {
 	width: 100%;
 	height: 100svh;
 	display: grid;
 	place-content: center;
-	background-color: var(--var-primary-color);
+	background-color: $PRIMARY_COLOR;
 	&_background {
 		width: 100%;
 		height: 100%;
@@ -17,8 +18,8 @@
 			width: 100%;
 			height: 100vh;
 			path {
-				fill: var(--var-secondary-color);
-				stroke: var(--var-primary-color);
+				fill: $SECONDARY_COLOR;
+				stroke: $PRIMARY_COLOR;
 				stroke-width: 1px;
 				stroke-linejoin: round;
 			}
@@ -33,7 +34,7 @@
 		font-size: max(25px, min(2vw, 3rem));
 	}
 	span {
-		color: var(--var-text-color);
+		color: $TEXT_COLOR;
 	}
 	.geolocation-search {
 		margin: 0 auto;

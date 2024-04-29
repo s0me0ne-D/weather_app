@@ -9,7 +9,7 @@
 		width: 100%;
 		height: 100%;
 		display: block;
-		background-color: var(--var-secondary-color);
+		background-color: $SECONDARY_COLOR;
 		transition: 0.15s ease-in;
 		grid-row: 1 / span 2;
 		svg {
@@ -22,7 +22,7 @@
 			grid-column: 3;
 		}
 		&:hover {
-			background-color: var(--var-tertiary-color);
+			background-color: $TERTIARY_COLOR;
 			svg {
 				transform: scale(1.1);
 			}

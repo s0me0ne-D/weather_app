@@ -1,4 +1,4 @@
-@import "../../../../../../../styles/themes";
+@import "../../../../../../../styles/variables";
 
 .mobile-locations {
 	padding: 5px;
@@ -11,7 +11,7 @@
 		top: 0;
 		left: 0;
 		z-index: 99999999;
-		background: var(--var-primary-color);
+		background: $PRIMARY_COLOR;
 		&_container {
 			max-height: 400px;
 			display: flex;

@@ -34,7 +34,7 @@
 	display: flex;
 }
 .isHover {
-	background-color: var(--var-tertiary-color);
+	background-color: $TERTIARY_COLOR;
 }
 .temp {
 	height: fit-content;
@@ -42,10 +42,10 @@
 	justify-content: center;
 }
 .bb {
-	border-bottom: 1px solid var(--var-tertiary-color);
+	border-bottom: 1px solid $TERTIARY_COLOR;
 }
 .currentTime {
-	background-color: var(--var-complementary);
+	background-color: $COMPLEMENTARY_COLOR;
 }
 
 @media (width<1000px) {

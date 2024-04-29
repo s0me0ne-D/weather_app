@@ -1,4 +1,4 @@
-@import "../../../../styles/animations", "../../../../styles/themes";
+@import "../../../../styles/animations", "../../../../styles/variables";
 .map-component {
 	width: 100%;
 	height: calc(100svh - 70px);
@@ -8,5 +8,5 @@
 	z-index: 999;
 	top: 70px;
 	left: 0;
-	background-color: var(--var-primary-color);
+	background-color: $PRIMARY_COLOR;
 }

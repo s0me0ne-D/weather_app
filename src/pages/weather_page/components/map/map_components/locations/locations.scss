@@ -1,4 +1,4 @@
-@import "../../../../../../styles/themes", "../../../../../../styles/variables";
+@import "../../../../../../styles/variables";
 
 .locations {
 	&_container {
@@ -10,7 +10,7 @@
 	&_location {
 		min-width: 150px;
 		padding: 5px 20px;
-		background-color: var(--var-secondary-color);
+		background-color: $SECONDARY_COLOR;
 		font-size: max(15px, min(2vw, 1.5rem));
 		color: white;
 		border-radius: 3px;
@@ -35,7 +35,7 @@
 }
 .activeLocation {
 	border: 1px solid rgba(255, 255, 255, 0.5);
-	background-color: var(--var-tertiary-color);
+	background-color: $TERTIARY_COLOR;
 }
 
 @media (width<=$MOBILE_WIDTH) {

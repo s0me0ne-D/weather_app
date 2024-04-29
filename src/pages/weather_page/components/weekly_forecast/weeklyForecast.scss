@@ -17,7 +17,7 @@
 		flex-direction: column;
 		justify-content: space-between;
 		align-items: center;
-		background-color: var(--var-tertiary-color);
+		background-color: $TERTIARY_COLOR;
 		cursor: pointer;
 		&::before {
 			content: "";
@@ -66,7 +66,7 @@
 	table {
 		width: 80%;
 		height: 50%;
-		background: var(--var-primary-color);
+		background: $PRIMARY_COLOR;
 		border-radius: 10px;
 	}
 	&_close-btn {

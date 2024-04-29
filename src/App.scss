@@ -1,6 +1,6 @@
-@import "./styles/styles";
+@import "./styles/styles", "./styles/variables";
 .App {
-	background-color: var(--var-primary-color);
+	background-color: $PRIMARY_COLOR;
 	width: 100%;
 	height: 100svh;
 	overflow: hidden;

@@ -9,7 +9,7 @@
 	align-items: center;
 
 	position: static;
-	background-color: var(--var-primary-color);
+	background-color: $PRIMARY_COLOR;
 
 	&_items {
 		display: flex;
@@ -30,7 +30,7 @@
 		width: 100%;
 		padding: 20px;
 		gap: 30px;
-		background-color: var(--var-primary-color);
+		background-color: $PRIMARY_COLOR;
 		position: absolute;
 		top: 70px;
 		left: 0;
