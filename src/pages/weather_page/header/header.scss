@@ -3,14 +3,21 @@
 .header {
 	width: 100%;
 	height: 70px;
-	display: flex;
-	justify-content: center;
+	display: grid;
+	grid-template-columns: 50px 50px 1fr 50px 50px;
 	gap: 10px;
 	align-items: center;
 
 	position: static;
 	background-color: $PRIMARY_COLOR;
 
+	&_menu {
+		grid-column: 3;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 10px;
+	}
 	&_items {
 		display: flex;
 		align-items: center;
@@ -21,9 +28,13 @@
 }
 @media (width <= $MOBILE_WIDTH) {
 	.header {
-		display: grid;
-		place-content: center;
-		grid-template-columns: repeat(3, 1fr);
+		grid-template-columns: 100px 1fr;
+		padding: 0 5px;
+		&_menu {
+			grid-column: 2;
+			display: grid;
+			grid-template-columns: 1fr 100px;
+		}
 	}
 
 	.header_items {
@@ -37,6 +48,7 @@
 		flex-direction: column;
 		z-index: 99999;
 		display: none;
+		grid-column: 1;
 		&.isActive {
 			display: flex;
 			animation: appears_popup 0.3s;

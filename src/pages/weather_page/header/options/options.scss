@@ -1,0 +1,58 @@
+@import "../../../../styles/variables";
+
+.options {
+	width: 40px;
+	height: 40px;
+	grid-column: 2;
+	position: relative;
+
+	&_btn {
+		width: 100%;
+		height: 100%;
+		background-color: transparent;
+		transition: 0.3s ease-in;
+		&:hover {
+			transform: scale(1.1);
+		}
+	}
+	&_items {
+		padding: 5px;
+		border-radius: 3px;
+		display: flex;
+		flex-direction: column;
+		gap: 2px;
+		position: absolute;
+		top: 40px;
+		left: 18px;
+		z-index: 999;
+		background-color: $TERTIARY_COLOR;
+	}
+	&_button {
+		$BUTTON_TRANSITION: 0.1s ease-in;
+		padding: 2px 5px;
+		display: flex;
+		align-items: center;
+		gap: 5px;
+		background-color: transparent;
+		border: 1px solid white;
+		border-radius: 3px;
+		color: white;
+		opacity: 0.8;
+		transition: $BUTTON_TRANSITION;
+		svg {
+			width: 20px;
+			height: 20px;
+			path {
+				transition: $BUTTON_TRANSITION;
+			}
+		}
+		&:hover {
+			opacity: 1;
+		}
+	}
+}
+@media (width<=$MOBILE_WIDTH) {
+	.options {
+		grid-column: 1;
+	}
+}

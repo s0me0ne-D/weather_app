@@ -1,0 +1,10 @@
+$PASTELE_RED: #ff6961;
+.delete-button {
+	&:hover {
+		color: $PASTELE_RED;
+		svg path {
+			fill: $PASTELE_RED;
+		}
+		border-color: $PASTELE_RED;
+	}
+}
