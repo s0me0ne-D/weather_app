@@ -54,7 +54,7 @@ export const GeolocationSearch = ({ closeBurger, burgerState }: GeolocationSearc
 		fetch(url)
 			.then((response) => response.json())
 			.then((data) => {
-				const location: string = data.address.city;
+				const location: string = data.address.city.toLowerCase();
 				if (!(locations as Array<string>).includes(location)) {
 					handleSuccess(location);
 				} else if (location === null) {

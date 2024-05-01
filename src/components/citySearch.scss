@@ -1,9 +1,26 @@
 @import "../styles/variables";
 .city-search {
 	height: 40px;
-	padding: 5px 10px;
-	background-color: transparent;
+	display: flex;
 	border: 1px solid $TEXT_COLOR;
-	font-size: 20px;
-	color: $TEXT_COLOR;
+	&_field {
+		height: 100%;
+		width: 100%;
+		padding: 5px 10px;
+		background: transparent;
+		font-size: 20px;
+		color: $TEXT_COLOR;
+	}
+	&_button {
+		width: 40px;
+		height: 100%;
+		background: transparent;
+		svg {
+			opacity: 0.7;
+			transition: 0.1s ease-in;
+		}
+		&:hover svg {
+			opacity: 1;
+		}
+	}
 }

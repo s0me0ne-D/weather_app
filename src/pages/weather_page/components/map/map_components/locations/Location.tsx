@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useGetForecastByCityQuery } from "../../../../../../redux/api";
 import { addressHandler } from "../../../../../../utils/addressHandler";
 import { WeatherIcon } from "../../../WeatherIcon";
@@ -18,16 +18,14 @@ export const Location = ({ location, index, openMobileList }: LocationProps) => 
 		(store: RootStore) => store.activeLocationIndexReducer
 	);
 	const { data } = useGetForecastByCityQuery(location);
-	const [cityName, setCityName] = useState("");
 	const dispatch = useDispatch();
 	const handleOnClick = () => {
 		index !== undefined && dispatch(changeActiveLocationIndex(index));
 		openMobileList && openMobileList((prev) => !prev);
 	};
 
-	useEffect(() => {
-		data && setCityName(addressHandler(data.resolvedAddress).cityName);
-	}, [data]);
+	const temp = data ? Math.floor(data.currentConditions.temp) : undefined;
+	const cityName = data ? addressHandler(data.resolvedAddress).cityName : "";
 
 	return data ? (
 		<button
@@ -38,7 +36,7 @@ export const Location = ({ location, index, openMobileList }: LocationProps) => 
 			<div className="locations_location_description">
 				<WeatherIcon condition={data.currentConditions.icon as IIconType} />
 				<span className="locations_location_description_temp">
-					{data?.currentConditions.temp}
+					{temp && temp}
 					<span>°C</span>
 				</span>
 			</div>
