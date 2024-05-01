@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/weather_app/static/css/main.13eebb34.css",
+    "main.css": "/weather_app/static/css/main.73a996f2.css",
     "main.js": "/weather_app/static/js/main.13839e54.js",
     "static/media/WixMadeforText-VariableFont_wght.ttf": "/weather_app/static/media/WixMadeforText-VariableFont_wght.e1a6376ab0916d9ce936.ttf",
     "static/media/locationMarker.svg": "/weather_app/static/media/locationMarker.b3545631f46a019baeaf770ea2ae825a.svg",
     "index.html": "/weather_app/index.html",
-    "main.13eebb34.css.map": "/weather_app/static/css/main.13eebb34.css.map",
+    "main.73a996f2.css.map": "/weather_app/static/css/main.73a996f2.css.map",
     "main.13839e54.js.map": "/weather_app/static/js/main.13839e54.js.map"
   },
   "entrypoints": [
-    "static/css/main.13eebb34.css",
+    "static/css/main.73a996f2.css",
     "static/js/main.13839e54.js"
   ]
 }
