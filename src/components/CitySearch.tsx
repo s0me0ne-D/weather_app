@@ -20,7 +20,7 @@ export const CitySearch = ({ closeBurger, burgerState }: CitySearchProps) => {
 			dispatch(showLocationExistPopup(true));
 		} else if (value.length !== 0) {
 			burgerState && closeBurger && closeBurger(false);
-			dispatch(addLookingForLocation(value));
+			dispatch(addLookingForLocation(location));
 			setLocations((prev: Array<string>) => [...prev, location]);
 		}
 		setValue("");
