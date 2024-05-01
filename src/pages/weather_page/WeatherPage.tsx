@@ -8,14 +8,16 @@ import "./weatherPage.scss";
 
 export const WeatherPage = () => {
 	const [isMap, setIsMap] = useState<boolean>(false);
-	const { error, isLoading, locationExist, isSuccess } = useSelector(
+	const { error, isLoading, locationExist, isSuccess, isConfirmation } = useSelector(
 		(store: RootStore) => store.popupReducer
 	);
 	return (
 		<div className="weather">
 			<Header onClick={setIsMap} />
 			<Main isMap={isMap} />
-			{error.isError || isLoading || locationExist || isSuccess ? <Popup /> : null}
+			{error.isError || isLoading || locationExist || isSuccess || isConfirmation ? (
+				<Popup />
+			) : null}
 		</div>
 	);
 };

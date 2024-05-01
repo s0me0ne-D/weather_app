@@ -4,6 +4,7 @@ export interface IGeolocationSearch {
 	error: IError;
 	locationExist: boolean;
 	isSuccess: boolean;
+	isConfirmation: boolean;
 }
 export interface IError {
 	isError: boolean;

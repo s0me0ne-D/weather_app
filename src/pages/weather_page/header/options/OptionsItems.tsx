@@ -1,10 +1,10 @@
 import React from "react";
 import { DeleteButton } from "./DeleteButton";
 
-export const OptionsItems = () => {
+export const OptionsItems = ({ closeOptions }: { closeOptions: () => void }) => {
 	return (
 		<div className="options_items">
-			<DeleteButton />
+			<DeleteButton closeOptions={closeOptions} />
 		</div>
 	);
 };

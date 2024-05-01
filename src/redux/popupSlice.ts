@@ -7,6 +7,7 @@ const initialState: IGeolocationSearch = {
 	error: { isError: false, message: "" },
 	locationExist: false,
 	isSuccess: false,
+	isConfirmation: false,
 };
 
 export const popup = createSlice({
@@ -30,6 +31,9 @@ export const popup = createSlice({
 		showSuccessPopup: (state, action: PayloadAction<boolean>) => {
 			state.isSuccess = action.payload;
 		},
+		showConfirmation: (state, action: PayloadAction<boolean>) => {
+			state.isConfirmation = action.payload;
+		},
 	},
 });
 export const popupReducer = popup.reducer;
@@ -39,4 +43,5 @@ export const {
 	showLoadingPopup,
 	showLocationExistPopup,
 	showSuccessPopup,
+	showConfirmation,
 } = popup.actions;

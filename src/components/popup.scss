@@ -22,6 +22,7 @@ $FONT-SIZE: 1.2rem;
 			max-height: 10rem;
 		}
 	}
+
 	&_btn {
 		width: 10rem;
 		height: 40px;
@@ -31,6 +32,10 @@ $FONT-SIZE: 1.2rem;
 		border: 1px solid $TEXT_COLOR;
 		border-radius: 5px;
 		transition: 0.1s ease-in;
+		&.delete {
+			color: $DELETE_COLOR;
+			border-color: $DELETE_COLOR;
+		}
 		&:hover {
 			background-color: rgba(255, 255, 255, 0.455);
 		}

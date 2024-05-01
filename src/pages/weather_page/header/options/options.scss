@@ -1,4 +1,4 @@
-@import "../../../../styles/variables";
+@import "../../../../styles/variables", "../../../../styles/animations";
 
 .options {
 	width: 40px;
@@ -14,6 +14,9 @@
 		&:hover {
 			transform: scale(1.1);
 		}
+		&.active {
+			transform: scale(1.1);
+		}
 	}
 	&_items {
 		padding: 5px;
@@ -23,9 +26,11 @@
 		gap: 2px;
 		position: absolute;
 		top: 40px;
-		left: 18px;
-		z-index: 999;
-		background-color: $TERTIARY_COLOR;
+		left: 0;
+		z-index: 999999;
+		background-color: $PRIMARY_COLOR;
+		opacity: 0.1;
+		animation: appears_popup 0.1s ease-in forwards;
 	}
 	&_button {
 		$BUTTON_TRANSITION: 0.1s ease-in;
@@ -37,7 +42,6 @@
 		border: 1px solid white;
 		border-radius: 3px;
 		color: white;
-		opacity: 0.8;
 		transition: $BUTTON_TRANSITION;
 		svg {
 			width: 20px;
@@ -45,9 +49,6 @@
 			path {
 				transition: $BUTTON_TRANSITION;
 			}
-		}
-		&:hover {
-			opacity: 1;
 		}
 	}
 }
