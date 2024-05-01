@@ -33,10 +33,14 @@
 		animation: appears_popup 0.1s ease-in forwards;
 	}
 	&_button {
+		min-width: 80px;
+		height: 30px;
 		$BUTTON_TRANSITION: 0.1s ease-in;
 		padding: 2px 5px;
+		font-size: 15px;
 		display: flex;
 		align-items: center;
+		justify-content: space-between;
 		gap: 5px;
 		background-color: transparent;
 		border: 1px solid white;

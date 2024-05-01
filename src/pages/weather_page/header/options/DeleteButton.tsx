@@ -1,4 +1,3 @@
-import React, { useContext } from "react";
 import { DeleteIcon } from "../../../../assets/icons/DeleteIcon";
 import "./deleteButton.scss";
 import { useDispatch } from "react-redux";
